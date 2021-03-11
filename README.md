@@ -15,7 +15,7 @@ _____
 
 ### Getting started
 
-Clone the repo and run the following commands from inside the directory to get setup.
+Fork the repo and run the following commands from inside the directory to get setup.
 
 #### Setup rails
 ##### Install ruby (using rbenv)
@@ -76,3 +76,8 @@ React components live in [app/javascript/components](app/javascript/components).
 
 Rails is setup with bootstrap 4 to get you started. Feel free to remove bootstrap and add the library of your choosing (or go fully custom if thats how you roll). Custom CSS can be added in [app/assets/stylesheets/application.scss](app/assets/stylesheets/application.scss).
 
+_____
+
+## Submitting your work
+
+Once you're done add [@mrmattnewell](https://github.com/mrmattnewell), [@t-c-k](https://github.com/t-c-k), and [@etherz10](https://github.com/etherz10) to your forked repo for review.
