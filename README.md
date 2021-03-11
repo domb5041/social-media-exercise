@@ -15,7 +15,7 @@ _____
 
 ### Getting started
 
-Fork the repo and run the following commands from inside the directory to get setup.
+Fork this repo and run the following commands from inside the directory to get setup.
 
 #### Setup rails
 ##### Install ruby (using rbenv)
