@@ -40,11 +40,11 @@ X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
 Vary: Accept
-ETag: W/&quot;5dd423e653086b05c0efdcf325aad881&quot;
+ETag: W/&quot;d2ffce55317b434a6c835e4b1b837780&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 7bdfab83-0cdb-4595-8103-bb72d1373b2f
-X-Runtime: 0.007962
-Content-Length: 138</pre>
+X-Request-Id: 9e82d1ad-fcd9-4635-a442-83f3290e6418
+X-Runtime: 0.009336
+Content-Length: 155</pre>
 
 #### Status
 
@@ -57,7 +57,8 @@ Content-Length: 138</pre>
     "id": 1,
     "firstname": "Marge",
     "lastname": "Simpson",
-    "created_at": "2021-03-10T20:48:08.464Z",
-    "updated_at": "2021-03-10T20:48:08.464Z"
+    "image_url": null,
+    "updated_at": "2021-03-12T11:29:57.294Z",
+    "created_at": "2021-03-12T11:29:57.294Z"
   }
 }</pre>

@@ -70,3 +70,5 @@ gem "active_storage_validations", "~> 0.9.2"
 gem "mini_magick", "~> 4.11"
 
 gem 'bootstrap', '~> 5.0.0.beta2'
+
+gem 'active_model_serializers'

@@ -3,7 +3,7 @@ class Api::PostsController < ApiController
     posts = Post.paginate(pagination_params)
 
     render json: {
-      posts: posts,
+      posts: posts.map { |post| PostSerializer.new(post) },
       metadata: {
         page: pagination_params[:page],
         per_page: posts.per_page,
@@ -16,14 +16,14 @@ class Api::PostsController < ApiController
   def show
     post = Post.find(params[:id])
 
-    render json: { post: post }, status: :ok
+    render json: { post: PostSerializer.new(post) }, status: :ok
   end
 
   def create
     post = Post.new(post_params)
 
     if post.save
-      render json: { post: post }, status: :created
+      render json: { post: PostSerializer.new(post) }, status: :created
     else
       render json: { error: post.errors.full_messages }, status: :bad_request
     end
@@ -33,7 +33,7 @@ class Api::PostsController < ApiController
     post = Post.find(params[:id])
 
     if post.update(post_params)
-      render json: { post: post }, status: :ok
+      render json: { post: PostSerializer.new(post) }, status: :ok
     else
       render json: { error: post.errors.full_messages }, status: :bad_request
     end

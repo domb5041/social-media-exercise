@@ -40,11 +40,11 @@ X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
 Vary: Accept
-ETag: W/&quot;e79471ca3f05a92b05043e35db16f4af&quot;
+ETag: W/&quot;fc1d91ac34f4bf9944d8dbeb823d372a&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 13cca2b4-984e-4d48-ba25-fb8820fcaca7
-X-Runtime: 0.008055
-Content-Length: 211</pre>
+X-Request-Id: b096534d-02ee-4b20-a0a3-261e43b561ec
+X-Runtime: 0.009284
+Content-Length: 228</pre>
 
 #### Status
 
@@ -58,8 +58,9 @@ Content-Length: 211</pre>
       "id": 1,
       "firstname": "Homer",
       "lastname": "Simpson",
-      "created_at": "2021-03-10T20:48:08.445Z",
-      "updated_at": "2021-03-10T20:48:08.445Z"
+      "image_url": null,
+      "updated_at": "2021-03-12T11:29:57.274Z",
+      "created_at": "2021-03-12T11:29:57.274Z"
     }
   ],
   "metadata": {

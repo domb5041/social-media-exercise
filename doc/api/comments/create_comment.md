@@ -40,10 +40,10 @@ X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
 Vary: Accept
-ETag: W/&quot;3e68e01657e54ef1076b12559a8aabb0&quot;
+ETag: W/&quot;317666bf952d0178b50a4480afcfa928&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 47e4cd74-3c1f-4b47-b406-abaca5da10d0
-X-Runtime: 0.009370
+X-Request-Id: 846ecc5e-a9d0-4147-9622-11df6e019b7e
+X-Runtime: 0.008956
 Content-Length: 152</pre>
 
 #### Status
@@ -58,7 +58,7 @@ Content-Length: 152</pre>
     "body": "Super cool comment",
     "post_id": 1,
     "user_id": 1,
-    "created_at": "2021-03-10T20:48:08.116Z",
-    "updated_at": "2021-03-10T20:48:08.116Z"
+    "created_at": "2021-03-12T11:29:56.905Z",
+    "updated_at": "2021-03-12T11:29:56.905Z"
   }
 }</pre>

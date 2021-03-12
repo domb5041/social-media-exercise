@@ -40,11 +40,11 @@ X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
 Vary: Accept
-ETag: W/&quot;ddd0426e88b17bdb18b2433da48b0d64&quot;
+ETag: W/&quot;06bd54a3784a27a703ce47ba31f020f9&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: c939cd80-9777-431b-b860-8a65566b28ad
-X-Runtime: 0.011196
-Content-Length: 139</pre>
+X-Request-Id: dfdcb40f-aed4-4bf5-911d-05b77a178043
+X-Runtime: 0.008907
+Content-Length: 156</pre>
 
 #### Status
 
@@ -54,10 +54,11 @@ Content-Length: 139</pre>
 
 <pre>{
   "user": {
-    "firstname": "Maggie",
     "id": 1,
+    "firstname": "Maggie",
     "lastname": "Simpson",
-    "created_at": "2021-03-10T20:48:08.481Z",
-    "updated_at": "2021-03-10T20:48:08.490Z"
+    "image_url": null,
+    "updated_at": "2021-03-12T11:29:57.320Z",
+    "created_at": "2021-03-12T11:29:57.311Z"
   }
 }</pre>

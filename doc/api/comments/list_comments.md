@@ -40,10 +40,10 @@ X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
 Vary: Accept
-ETag: W/&quot;923ef118dc6dbc17f49efd6468333bc6&quot;
+ETag: W/&quot;72e9797f8f4342e6ba5394c53a64b05c&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 0698be09-e3ea-4b49-858e-38bcbc84e033
-X-Runtime: 0.027209
+X-Request-Id: 354cc2fc-8cae-4ccc-8bc3-02a423a0f4fb
+X-Runtime: 0.023811
 Content-Length: 223</pre>
 
 #### Status
@@ -59,8 +59,8 @@ Content-Length: 223</pre>
       "body": "My First Comment",
       "post_id": 1,
       "user_id": 1,
-      "created_at": "2021-03-10T20:48:08.062Z",
-      "updated_at": "2021-03-10T20:48:08.062Z"
+      "created_at": "2021-03-12T11:29:56.855Z",
+      "updated_at": "2021-03-12T11:29:56.855Z"
     }
   ],
   "metadata": {

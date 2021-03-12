@@ -3,7 +3,7 @@ class Api::UsersController < ApiController
     users = User.paginate(pagination_params)
 
     render json: {
-      users: users,
+      users: users.map { |u| UserSerializer.new(u) },
       metadata: {
         page: pagination_params[:page],
         per_page: users.per_page,
@@ -16,14 +16,14 @@ class Api::UsersController < ApiController
   def show
     user = User.find(params[:id])
 
-    render json: { user: user }, status: :ok
+    render json: { user: UserSerializer.new(user) }, status: :ok
   end
 
   def create
     user = User.new(user_params)
 
     if user.save
-      render json: { user: user }, status: :created
+      render json: { user: UserSerializer.new(user) }, status: :created
     else
       render json: { error: user.errors.full_messages }, status: :bad_request
     end
@@ -33,7 +33,7 @@ class Api::UsersController < ApiController
     user = User.find(params[:id])
 
     if user.update(user_params)
-      render json: { user: user }, status: :ok
+      render json: { user: UserSerializer.new(user) }, status: :ok
     else
       render json: { error: user.errors.full_messages }, status: :bad_request
     end
