@@ -75,34 +75,45 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                 {!loading && (
                     <>
                         <img src={post.image_url} style={{ width: 200 }} />
-                        <div>{post.body}</div>
-                        <div>{userName}</div>
+
                         {editing ? (
                             <>
-                                <button onClick={cancelEditing}>cancel</button>
                                 <input
                                     type='text'
                                     value={bodyText}
                                     onChange={e => setBodyText(e.target.value)}
                                 />
-                                <button onClick={finishEditing}>
+                                <button onClick={cancelEditing}>cancel</button>
+                                <button
+                                    onClick={finishEditing}
+                                    disabled={bodyText === post.body}
+                                >
                                     submit edit
                                 </button>
                                 <button onClick={deletePost}>delete</button>
                             </>
                         ) : (
-                            currentUser == post.user_id && (
-                                <>
-                                    <button onClick={startEditing}>edit</button>
-                                </>
-                            )
+                            <div>
+                                {post.body}
+                                {currentUser == post.user_id && (
+                                    <>
+                                        <button onClick={startEditing}>
+                                            edit
+                                        </button>
+                                    </>
+                                )}
+                            </div>
                         )}
+                        <div>{userName}</div>
                         <input
                             style={{ display: 'block' }}
                             type='text'
+                            value={commentBody}
                             onChange={e => setCommentBody(e.target.value)}
                         />
-                        <button onClick={createComment}>add comment</button>
+                        <button disabled={!commentBody} onClick={createComment}>
+                            add comment
+                        </button>
                         <div>
                             {comments.map((comment, i) => (
                                 <Comment

@@ -10,11 +10,15 @@ const StyledModal = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
     & > div {
         width: 400px;
-        height: 300px;
+        min-height: 300px;
         background-color: white;
-        border: 1px solid black;
+        padding: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
     }
 `;
 
