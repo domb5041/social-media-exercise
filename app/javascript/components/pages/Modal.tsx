@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from './Button';
 
 const StyledModal = styled.div`
     position: absolute;
@@ -12,13 +13,35 @@ const StyledModal = styled.div`
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
     & > div {
-        width: 400px;
+        width: 500px;
         min-height: 300px;
         background-color: white;
         padding: 10px;
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+`;
+
+const StyledClose = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: silver;
+    transition: 0.1s;
+    &:hover {
+        color: white;
+        background-color: red;
     }
 `;
 
@@ -27,7 +50,9 @@ export default function Modal({ children, showWhen, close }) {
         showWhen && (
             <StyledModal>
                 <div>
-                    <button onClick={close}>close</button>
+                    <StyledClose onClick={close}>
+                        <i className='fas fa-times' />
+                    </StyledClose>
                     {children}
                 </div>
             </StyledModal>
