@@ -5,6 +5,7 @@ import Post from './Post';
 import PostDetail from './PostDetail';
 import LoadingOverlay from './LoadingOverlay';
 import CreatePost from './CreatePost';
+import CreateUser from './CreateUser';
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
@@ -18,10 +19,14 @@ const HelloWorld = () => {
 
     useEffect(() => {
         getPosts();
+        getUsers();
+    }, []);
+
+    const getUsers = () => {
         api.getUsers().then(d => {
             setUsers(d.users);
         });
-    }, []);
+    };
 
     const getPosts = () => {
         setLoading(true);
@@ -38,9 +43,7 @@ const HelloWorld = () => {
 
     return (
         <ApplicationLayout>
-            {/* <button onClick={() => api.createUser('big', 'ben')}>
-                create user
-            </button> */}
+            <CreateUser getUsers={getUsers} />
             {/* <button onClick={() => api.deleteUser(11)}>delete user</button> */}
             <select onChange={e => setCurrentUser(e.target.value)}>
                 {users.map((user, i) => (
