@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ApplicationLayout from '../layouts/ApplicationLayout';
 import * as api from '../../apiRequests';
+import Post from './Post';
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
@@ -36,6 +37,10 @@ const HelloWorld = () => {
 
     const convertDate = date => {
         return Date.parse(date);
+    };
+
+    const deletePost = id => {
+        api.deletePost(id).then(() => getPosts());
     };
 
     return (
@@ -94,63 +99,16 @@ const HelloWorld = () => {
                                 convertDate(a.created_at)
                         )
                         .map((post, i) => (
-                            <div
+                            <Post
                                 key={i}
-                                style={{
-                                    width: 200,
-                                    border: '1px solid black',
-                                    marginBottom: 10,
-                                }}
-                            >
-                                <img
-                                    src={post.image_url}
-                                    style={{ width: '100%' }}
-                                />
-                                <div>{post.body}</div>
-                                <button
-                                    onClick={() => {
-                                        api.deletePost(post.id).then(() =>
-                                            getPosts()
-                                        );
-                                    }}
-                                >
-                                    delete
-                                </button>
-
-                                <button
-                                    onClick={() => {
-                                        setEditing(post.id);
-                                        setBodyText(post.body);
-                                    }}
-                                >
-                                    edit
-                                </button>
-                                {editing === post.id && (
-                                    <>
-                                        <input
-                                            type='text'
-                                            value={bodyText}
-                                            onChange={e =>
-                                                setBodyText(e.target.value)
-                                            }
-                                        />
-                                        <button
-                                            onClick={() => {
-                                                api.editPost(
-                                                    post.id,
-                                                    bodyText
-                                                ).then(() => {
-                                                    getPosts();
-                                                    setBodyText('');
-                                                    setEditing(null);
-                                                });
-                                            }}
-                                        >
-                                            submit edit
-                                        </button>
-                                    </>
-                                )}
-                            </div>
+                                image={post.image_url}
+                                body={post.body}
+                                deletePost={() => deletePost(post.id)}
+                                editMode={editing === post.id}
+                                setEditing={id => setEditing(id)}
+                                postId={post.id}
+                                getPosts={getPosts}
+                            />
                         ))}
                 </div>
             )}
