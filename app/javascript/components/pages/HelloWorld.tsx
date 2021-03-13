@@ -9,7 +9,6 @@ const HelloWorld = () => {
     const [composing, setComposing] = useState(null);
     const [bodyText, setBodyText] = useState('');
     const [loading, setLoading] = useState(false);
-    const [editing, setEditing] = useState(null);
 
     const [postFocus, setPostFocus] = useState(null);
 
@@ -40,10 +39,6 @@ const HelloWorld = () => {
 
     const convertDate = date => {
         return Date.parse(date);
-    };
-
-    const deletePost = id => {
-        api.deletePost(id).then(() => getPosts());
     };
 
     return (
@@ -106,17 +101,16 @@ const HelloWorld = () => {
                                 key={i}
                                 image={post.image_url}
                                 body={post.body}
-                                deletePost={() => deletePost(post.id)}
-                                editMode={editing === post.id}
-                                setEditing={id => setEditing(id)}
-                                postId={post.id}
-                                getPosts={getPosts}
                                 setPostFocus={() => setPostFocus(post)}
                             />
                         ))}
                 </div>
             )}
-            <PostDetail post={postFocus} close={() => setPostFocus(null)} />
+            <PostDetail
+                post={postFocus}
+                close={() => setPostFocus(null)}
+                getPosts={getPosts}
+            />
         </ApplicationLayout>
     );
 };

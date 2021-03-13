@@ -3,26 +3,32 @@ import * as api from '../../apiRequests';
 import styled from 'styled-components';
 import Modal from './Modal';
 
-export default function Post({ post, close }) {
-    // const [bodyText, setBodyText] = useState('');
+export default function Post({ post, close, getPosts }) {
+    const [editing, setEditing] = useState(false);
+    const [bodyText, setBodyText] = useState('');
 
-    // const startEditing = () => {
-    //     setEditing(postId);
-    //     setBodyText(body);
-    // };
+    const startEditing = () => {
+        setEditing(true);
+        setBodyText(post.body);
+    };
 
-    // const cancelEditing = () => {
-    //     setEditing(null);
-    //     setBodyText('');
-    // };
+    const cancelEditing = () => {
+        setEditing(false);
+        setBodyText('');
+    };
 
-    // const finishEditing = () => {
-    //     api.editPost(postId, bodyText).then(() => {
-    //         getPosts();
-    //         setBodyText('');
-    //         setEditing(null);
-    //     });
-    // };
+    const finishEditing = () => {
+        api.editPost(post.id, bodyText).then(() => {
+            getPosts();
+            setBodyText('');
+            setEditing(false);
+        });
+    };
+
+    const deletePost = () => {
+        close();
+        api.deletePost(post.id).then(() => getPosts());
+    };
 
     return (
         <Modal showWhen={post} close={close}>
@@ -32,14 +38,10 @@ export default function Post({ post, close }) {
                     <div>{post.body}</div>
                 </>
             )}
-            {/* <button onClick={deletePost}>delete</button>
-            {editMode ? (
-                <button onClick={cancelEditing}>cancel</button>
-            ) : (
-                <button onClick={startEditing}>edit</button>
-            )}
-            {editMode && (
+            <button onClick={deletePost}>delete</button>
+            {editing ? (
                 <>
+                    <button onClick={cancelEditing}>cancel</button>
                     <input
                         type='text'
                         value={bodyText}
@@ -47,7 +49,9 @@ export default function Post({ post, close }) {
                     />
                     <button onClick={finishEditing}>submit edit</button>
                 </>
-            )} */}
+            ) : (
+                <button onClick={startEditing}>edit</button>
+            )}
         </Modal>
     );
 }
