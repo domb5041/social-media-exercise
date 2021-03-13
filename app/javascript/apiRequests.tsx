@@ -3,8 +3,9 @@ import axios from 'axios';
 // posts
 
 export const getPosts = () => {
+    const config = { params: { per_page: 1000 } };
     return axios
-        .get('/api/posts')
+        .get('/api/posts', config)
         .then(res => res.data)
         .catch(err => console.log(err));
 };
@@ -13,6 +14,22 @@ export const createPost = (body, userId) => {
     const payload = { post: { body: body, user_id: userId } };
     return axios
         .post('/api/posts', payload)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// export const updatePost = (id, body) => {
+//     const payload = { post: { body: body } };
+//     return axios
+//         .patch('/api/posts/' + id, payload)
+//         .then(res => res.data)
+//         .catch(err => console.log(err));
+// };
+
+export const publishPost = (id, body) => {
+    const payload = { post: { state: 'published', body: body } };
+    return axios
+        .patch('/api/posts/' + id, payload)
         .then(res => res.data)
         .catch(err => console.log(err));
 };
