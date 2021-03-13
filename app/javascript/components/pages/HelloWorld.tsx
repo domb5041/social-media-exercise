@@ -7,6 +7,7 @@ const HelloWorld = () => {
     const [composing, setComposing] = useState(null);
     const [bodyText, setBodyText] = useState('');
     const [loading, setLoading] = useState(false);
+    const [editing, setEditing] = useState(null);
 
     useEffect(() => {
         getPosts();
@@ -115,6 +116,40 @@ const HelloWorld = () => {
                                 >
                                     delete
                                 </button>
+
+                                <button
+                                    onClick={() => {
+                                        setEditing(post.id);
+                                        setBodyText(post.body);
+                                    }}
+                                >
+                                    edit
+                                </button>
+                                {editing === post.id && (
+                                    <>
+                                        <input
+                                            type='text'
+                                            value={bodyText}
+                                            onChange={e =>
+                                                setBodyText(e.target.value)
+                                            }
+                                        />
+                                        <button
+                                            onClick={() => {
+                                                api.editPost(
+                                                    post.id,
+                                                    bodyText
+                                                ).then(() => {
+                                                    getPosts();
+                                                    setBodyText('');
+                                                    setEditing(null);
+                                                });
+                                            }}
+                                        >
+                                            submit edit
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         ))}
                 </div>

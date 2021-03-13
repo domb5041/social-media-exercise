@@ -22,13 +22,13 @@ export const deletePost = id => {
     return axios.delete('/api/posts/' + id).catch(err => console.log(err));
 };
 
-// export const updatePost = (id, body) => {
-//     const payload = { post: { body: body } };
-//     return axios
-//         .patch('/api/posts/' + id, payload)
-//         .then(res => res.data)
-//         .catch(err => console.log(err));
-// };
+export const editPost = (id, body) => {
+    const payload = { post: { body: body } };
+    return axios
+        .patch('/api/posts/' + id, payload)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
 
 export const publishPost = (id, body) => {
     const payload = { post: { state: 'published', body: body } };
