@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ApplicationLayout from '../layouts/ApplicationLayout';
 import * as api from '../../apiRequests';
 import Post from './Post';
+import PostDetail from './PostDetail';
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
@@ -9,6 +10,8 @@ const HelloWorld = () => {
     const [bodyText, setBodyText] = useState('');
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(null);
+
+    const [postFocus, setPostFocus] = useState(null);
 
     useEffect(() => {
         getPosts();
@@ -108,10 +111,12 @@ const HelloWorld = () => {
                                 setEditing={id => setEditing(id)}
                                 postId={post.id}
                                 getPosts={getPosts}
+                                setPostFocus={() => setPostFocus(post)}
                             />
                         ))}
                 </div>
             )}
+            <PostDetail post={postFocus} close={() => setPostFocus(null)} />
         </ApplicationLayout>
     );
 };

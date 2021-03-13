@@ -16,6 +16,7 @@ export default function Post({
     setEditing,
     postId,
     getPosts,
+    setPostFocus,
 }) {
     const [bodyText, setBodyText] = useState('');
 
@@ -38,7 +39,7 @@ export default function Post({
     };
 
     return (
-        <StyledPost>
+        <StyledPost onClick={setPostFocus}>
             <img src={image} style={{ width: '100%' }} />
             <div>{body}</div>
             <button onClick={deletePost}>delete</button>
