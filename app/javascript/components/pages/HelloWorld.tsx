@@ -30,8 +30,7 @@ const HelloWorld = () => {
 
     return (
         <ApplicationLayout>
-            <div className='container py-5'>
-                {/* <button
+            {/* <button
                     onClick={() => {
                         api.getUsers().then(d => console.log(d));
                     }}
@@ -43,38 +42,7 @@ const HelloWorld = () => {
                 </button>
                 <button onClick={() => api.deleteUser(1)}>delete user</button> */}
 
-                <CreatePost getPosts={getPosts} />
-                {/* {composing && (
-                    <form
-                        id='uploadForm'
-                        // onSubmit={e => {
-                        //     e.preventDefault();
-                        //     api.uploadPostImage(1);
-                        // }}
-                        role='form'
-                        method='post'
-                    >
-                        <input
-                            style={{ display: 'block' }}
-                            type='text'
-                            onChange={e => setBodyText(e.target.value)}
-                        />
-                        <input
-                            style={{ display: 'block' }}
-                            type='file'
-                            id='file'
-                            name='file'
-                            onChange={() => api.uploadPostImage(composing)}
-                        />
-                        <button
-                            style={{ display: 'block' }}
-                            onClick={e => finishCompose(e)}
-                        >
-                            publish post
-                        </button>
-                    </form>
-                )} */}
-            </div>
+            <CreatePost getPosts={getPosts} />
             <LoadingOverlay showWhen={loading} />
             {!loading && (
                 <div>
