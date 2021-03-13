@@ -28,7 +28,6 @@ const StyledModal = styled.div`
 `;
 
 const StyledHeader = styled.div`
-    width: 100%;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -51,6 +50,7 @@ const StyledClose = styled.button`
     height: 30px;
     padding: 0;
     transition: 0.1s;
+    cursor: pointer;
     &:hover {
         transform: scale(1.1);
     }

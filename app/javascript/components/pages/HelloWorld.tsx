@@ -6,6 +6,23 @@ import PostDetail from './PostDetail';
 import LoadingOverlay from './LoadingOverlay';
 import CreatePost from './CreatePost';
 import CreateUser from './CreateUser';
+import styled from 'styled-components';
+
+const StyledApp = styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+`;
+
+const StyledPosts = styled.div`
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
@@ -43,46 +60,50 @@ const HelloWorld = () => {
 
     return (
         <ApplicationLayout>
-            <CreateUser getUsers={getUsers} />
-            {/* <button onClick={() => api.deleteUser(11)}>delete user</button> */}
-            <select onChange={e => setCurrentUser(e.target.value)}>
-                {users.map((user, i) => (
-                    <option key={i} value={user.id}>
-                        {user.firstname + ' ' + user.lastname}
-                    </option>
-                ))}
-            </select>
-            <CreatePost getPosts={getPosts} currentUser={currentUser} />
-            <LoadingOverlay showWhen={loading} />
-            {!loading && (
+            <StyledApp>
                 <div>
-                    {posts
-                        .filter(post => post.state === 'published')
-                        .sort(
-                            (a, b) =>
-                                convertDate(b.created_at) -
-                                convertDate(a.created_at)
-                        )
-                        .map((post, i) => (
-                            <Post
-                                key={i}
-                                image={post.image_url}
-                                body={post.body}
-                                setPostFocus={() => setPostFocus(post.id)}
-                                userId={post.user_id}
-                            />
+                    <CreateUser getUsers={getUsers} />
+                    {/* <button onClick={() => api.deleteUser(11)}>delete user</button> */}
+                    <select onChange={e => setCurrentUser(e.target.value)}>
+                        {users.map((user, i) => (
+                            <option key={i} value={user.id}>
+                                {user.firstname + ' ' + user.lastname}
+                            </option>
                         ))}
+                    </select>
+                    <CreatePost getPosts={getPosts} currentUser={currentUser} />
                 </div>
-            )}
+                <LoadingOverlay showWhen={loading} />
+                {!loading && (
+                    <StyledPosts>
+                        {posts
+                            .filter(post => post.state === 'published')
+                            .sort(
+                                (a, b) =>
+                                    convertDate(b.created_at) -
+                                    convertDate(a.created_at)
+                            )
+                            .map((post, i) => (
+                                <Post
+                                    key={i}
+                                    image={post.image_url}
+                                    body={post.body}
+                                    setPostFocus={() => setPostFocus(post.id)}
+                                    userId={post.user_id}
+                                />
+                            ))}
+                    </StyledPosts>
+                )}
 
-            {postFocus && (
-                <PostDetail
-                    postId={postFocus}
-                    close={() => setPostFocus(null)}
-                    getPosts={getPosts}
-                    currentUser={currentUser}
-                />
-            )}
+                {postFocus && (
+                    <PostDetail
+                        postId={postFocus}
+                        close={() => setPostFocus(null)}
+                        getPosts={getPosts}
+                        currentUser={currentUser}
+                    />
+                )}
+            </StyledApp>
         </ApplicationLayout>
     );
 };
