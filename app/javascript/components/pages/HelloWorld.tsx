@@ -9,12 +9,16 @@ const HelloWorld = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        getPosts();
+    }, []);
+
+    const getPosts = () => {
         setLoading(true);
         api.getPosts().then(d => {
             setPosts(d.posts);
             setLoading(false);
         });
-    }, []);
+    };
 
     const startCompose = () => {
         api.createPost('body', 10).then(d => setComposing(d.post.id));
@@ -25,12 +29,12 @@ const HelloWorld = () => {
         api.publishPost(composing, bodyText).then(() => {
             setComposing(null);
             setBodyText('');
-            setLoading(true);
-            api.getPosts().then(d => {
-                setPosts(d.posts);
-                setLoading(false);
-            });
+            getPosts();
         });
+    };
+
+    const convertDate = date => {
+        return Date.parse(date);
     };
 
     return (
@@ -83,6 +87,11 @@ const HelloWorld = () => {
                 <div>
                     {posts
                         .filter(post => post.state === 'published')
+                        .sort(
+                            (a, b) =>
+                                convertDate(b.created_at) -
+                                convertDate(a.created_at)
+                        )
                         .map((post, i) => (
                             <div
                                 key={i}
@@ -97,6 +106,15 @@ const HelloWorld = () => {
                                     style={{ width: '100%' }}
                                 />
                                 <div>{post.body}</div>
+                                <button
+                                    onClick={() => {
+                                        api.deletePost(post.id).then(() =>
+                                            getPosts()
+                                        );
+                                    }}
+                                >
+                                    delete
+                                </button>
                             </div>
                         ))}
                 </div>

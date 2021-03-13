@@ -18,6 +18,10 @@ export const createPost = (body, userId) => {
         .catch(err => console.log(err));
 };
 
+export const deletePost = id => {
+    return axios.delete('/api/posts/' + id).catch(err => console.log(err));
+};
+
 // export const updatePost = (id, body) => {
 //     const payload = { post: { body: body } };
 //     return axios
