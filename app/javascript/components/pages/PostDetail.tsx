@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Modal from './Modal';
 import LoadingOverlay from './LoadingOverlay';
 
-export default function Post({ postId, close, getPosts }) {
+export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [editing, setEditing] = useState(false);
     const [bodyText, setBodyText] = useState('');
     const [post, setPost] = useState(null);
@@ -62,7 +62,7 @@ export default function Post({ postId, close, getPosts }) {
                         <img src={post.image_url} style={{ width: 200 }} />
                         <div>{post.body}</div>
                         <div>{userName}</div>
-                        <button onClick={deletePost}>delete</button>
+
                         {editing ? (
                             <>
                                 <button onClick={cancelEditing}>cancel</button>
@@ -76,7 +76,12 @@ export default function Post({ postId, close, getPosts }) {
                                 </button>
                             </>
                         ) : (
-                            <button onClick={startEditing}>edit</button>
+                            currentUser === post.user_id && (
+                                <>
+                                    <button onClick={startEditing}>edit</button>
+                                    <button onClick={deletePost}>delete</button>
+                                </>
+                            )
                         )}
                     </>
                 )}

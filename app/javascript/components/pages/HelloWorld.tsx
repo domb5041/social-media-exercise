@@ -77,6 +77,7 @@ const HelloWorld = () => {
                     postId={postFocus}
                     close={() => setPostFocus(null)}
                     getPosts={getPosts}
+                    currentUser={currentUser}
                 />
             )}
         </ApplicationLayout>
