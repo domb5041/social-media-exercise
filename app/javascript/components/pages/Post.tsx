@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../apiRequests';
+import styled from 'styled-components';
+
+const StyledPost = styled.div`
+    border: 1px solid black;
+    width: 200px;
+    margin-bottom: 10px;
+`;
 
 export default function Post({
     image,
@@ -31,13 +38,7 @@ export default function Post({
     };
 
     return (
-        <div
-            style={{
-                width: 200,
-                border: '1px solid black',
-                marginBottom: 10,
-            }}
-        >
+        <StyledPost>
             <img src={image} style={{ width: '100%' }} />
             <div>{body}</div>
             <button onClick={deletePost}>delete</button>
@@ -56,6 +57,6 @@ export default function Post({
                     <button onClick={finishEditing}>submit edit</button>
                 </>
             )}
-        </div>
+        </StyledPost>
     );
 }
