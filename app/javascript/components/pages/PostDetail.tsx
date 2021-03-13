@@ -3,6 +3,7 @@ import * as api from '../../apiRequests';
 import styled from 'styled-components';
 import Modal from './Modal';
 import LoadingOverlay from './LoadingOverlay';
+import Comment from './Comment';
 
 export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [editing, setEditing] = useState(false);
@@ -10,6 +11,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [userName, setUserName] = useState('');
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         getPost();
@@ -26,6 +28,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
             setPost(d.post);
             setLoading(false);
             getUserName(d.post.user_id);
+            getComments(d.post.id);
         });
     };
 
@@ -53,6 +56,16 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
         api.deletePost(post.id).then(() => getPosts());
     };
 
+    const createComment = () => {
+        api.createComment(post.id, currentUser, 'this is a comment').then(() =>
+            getComments(post.id)
+        );
+    };
+
+    const getComments = postId => {
+        api.getComments(postId).then(d => setComments(d.comments));
+    };
+
     return (
         <>
             <LoadingOverlay showWhen={loading} />
@@ -62,7 +75,6 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                         <img src={post.image_url} style={{ width: 200 }} />
                         <div>{post.body}</div>
                         <div>{userName}</div>
-
                         {editing ? (
                             <>
                                 <button onClick={cancelEditing}>cancel</button>
@@ -83,6 +95,16 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 </>
                             )
                         )}
+                        <button onClick={createComment}>add comment</button>
+                        <div>
+                            {comments.map((comment, i) => (
+                                <Comment
+                                    key={i}
+                                    body={comment.body}
+                                    userId={comment.user_id}
+                                />
+                            ))}
+                        </div>
                     </>
                 )}
             </Modal>

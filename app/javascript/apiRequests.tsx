@@ -93,3 +93,20 @@ export const uploadPostImage = id => {
         .then(res => res.data)
         .catch(err => console.log(err));
 };
+
+// comments
+
+export const createComment = (postId, userId, comment) => {
+    const payload = { comment: { body: comment, user_id: userId } };
+    return axios
+        .post(`/api/posts/${postId}/comments`, payload)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+export const getComments = postId => {
+    return axios
+        .get(`/api/posts/${postId}/comments`)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
