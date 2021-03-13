@@ -88,12 +88,12 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 <button onClick={finishEditing}>
                                     submit edit
                                 </button>
+                                <button onClick={deletePost}>delete</button>
                             </>
                         ) : (
-                            currentUser === post.user_id && (
+                            currentUser == post.user_id && (
                                 <>
                                     <button onClick={startEditing}>edit</button>
-                                    <button onClick={deletePost}>delete</button>
                                 </>
                             )
                         )}

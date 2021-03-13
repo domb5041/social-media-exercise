@@ -18,7 +18,7 @@ export default function PostDetail({
 
     useEffect(() => {
         getUserName(userId);
-    }, []);
+    }, [getPost]);
 
     const getUserName = userId => {
         api.getUser(userId).then(d => {
