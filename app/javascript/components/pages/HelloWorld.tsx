@@ -43,6 +43,7 @@ const HelloWorld = () => {
 
     return (
         <ApplicationLayout>
+            <i className='fab fa-facebook-f fa-3x mx-2'></i>
             <CreateUser getUsers={getUsers} />
             {/* <button onClick={() => api.deleteUser(11)}>delete user</button> */}
             <select onChange={e => setCurrentUser(e.target.value)}>
