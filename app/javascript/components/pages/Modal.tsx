@@ -28,9 +28,16 @@ const StyledModal = styled.div`
 `;
 
 const StyledHeader = styled.div`
-    text-align: right;
     width: 100%;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    & > h4 {
+        flex: 1;
+        margin: 0;
+        font-size: 20px;
+        margin-left: 5px;
+    }
 `;
 
 const StyledClose = styled.button`
@@ -52,14 +59,16 @@ const StyledClose = styled.button`
 const StyledBody = styled.div`
     flex: 1;
     overflow: auto;
+    padding: 0 5px 5px 5px;
 `;
 
-export default function Modal({ children, showWhen, close }) {
+export default function Modal({ title, children, showWhen, close }) {
     return (
         showWhen && (
             <StyledModal>
                 <div>
                     <StyledHeader>
+                        <h4>{title}</h4>
                         <StyledClose onClick={close}>
                             <i className='fas fa-times' />
                         </StyledClose>

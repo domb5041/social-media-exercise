@@ -20,7 +20,11 @@ export default function CreateUser({ getUsers }) {
     return (
         <>
             <button onClick={() => setCreatingUser(true)}>create user</button>
-            <Modal showWhen={creatingUser} close={() => setCreatingUser(false)}>
+            <Modal
+                title='Create User'
+                showWhen={creatingUser}
+                close={() => setCreatingUser(false)}
+            >
                 <input
                     style={{ display: 'block' }}
                     type='text'

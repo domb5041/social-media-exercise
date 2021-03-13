@@ -71,7 +71,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     return (
         <>
             <LoadingOverlay showWhen={loading} />
-            <Modal showWhen={post} close={close}>
+            <Modal title={userName} showWhen={post} close={close}>
                 {!loading && (
                     <>
                         <img src={post.image_url} style={{ width: '100%' }} />
@@ -104,7 +104,6 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 )}
                             </div>
                         )}
-                        <div>{userName}</div>
                         <input
                             style={{ display: 'block' }}
                             type='text'
