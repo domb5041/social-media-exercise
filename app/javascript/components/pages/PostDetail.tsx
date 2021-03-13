@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Modal from './Modal';
 import LoadingOverlay from './LoadingOverlay';
 
-export default function Post({ postId, close }) {
+export default function Post({ postId, close, getPosts }) {
     const [editing, setEditing] = useState(false);
     const [bodyText, setBodyText] = useState('');
     const [post, setPost] = useState(null);
@@ -36,11 +36,13 @@ export default function Post({ postId, close }) {
             setBodyText('');
             setEditing(false);
             getPost();
+            getPosts();
         });
     };
 
     const deletePost = () => {
-        api.deletePost(post.id).then(() => close());
+        close();
+        api.deletePost(post.id).then(() => getPosts());
     };
 
     return (

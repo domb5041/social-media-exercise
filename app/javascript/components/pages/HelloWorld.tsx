@@ -98,10 +98,8 @@ const HelloWorld = () => {
             {postFocus && (
                 <PostDetail
                     postId={postFocus}
-                    close={() => {
-                        setPostFocus(null);
-                        getPosts();
-                    }}
+                    close={() => setPostFocus(null)}
+                    getPosts={getPosts}
                 />
             )}
         </ApplicationLayout>
