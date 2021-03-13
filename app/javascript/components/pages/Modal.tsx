@@ -14,35 +14,44 @@ const StyledModal = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     & > div {
         width: 500px;
+        max-width: 90vw;
         min-height: 300px;
+        max-height: 90vh;
         background-color: white;
-        padding: 10px;
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
         position: relative;
+        display: flex;
+        flex-direction: column;
     }
 `;
 
+const StyledHeader = styled.div`
+    text-align: right;
+    width: 100%;
+    padding: 5px;
+`;
+
 const StyledClose = styled.button`
-    position: absolute;
-    top: 10px;
-    right: 10px;
     border: none;
     background: none;
-    font-size: 16px;
-    display: flex;
+    font-size: 18px;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 30px;
     height: 30px;
-    border-radius: 100%;
-    background: silver;
+    padding: 0;
     transition: 0.1s;
     &:hover {
-        color: white;
-        background-color: red;
+        transform: scale(1.1);
     }
+`;
+
+const StyledBody = styled.div`
+    flex: 1;
+    overflow: auto;
 `;
 
 export default function Modal({ children, showWhen, close }) {
@@ -50,10 +59,12 @@ export default function Modal({ children, showWhen, close }) {
         showWhen && (
             <StyledModal>
                 <div>
-                    <StyledClose onClick={close}>
-                        <i className='fas fa-times' />
-                    </StyledClose>
-                    {children}
+                    <StyledHeader>
+                        <StyledClose onClick={close}>
+                            <i className='fas fa-times' />
+                        </StyledClose>
+                    </StyledHeader>
+                    <StyledBody>{children}</StyledBody>
                 </div>
             </StyledModal>
         )

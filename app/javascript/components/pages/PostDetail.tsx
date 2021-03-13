@@ -74,7 +74,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
             <Modal showWhen={post} close={close}>
                 {!loading && (
                     <>
-                        <img src={post.image_url} style={{ width: 200 }} />
+                        <img src={post.image_url} style={{ width: '100%' }} />
 
                         {editing ? (
                             <>
