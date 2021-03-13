@@ -3,6 +3,7 @@ import ApplicationLayout from '../layouts/ApplicationLayout';
 import * as api from '../../apiRequests';
 import Post from './Post';
 import PostDetail from './PostDetail';
+import LoadingOverlay from './LoadingOverlay';
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
@@ -87,6 +88,7 @@ const HelloWorld = () => {
                     </form>
                 )}
             </div>
+            <LoadingOverlay showWhen={loading} />
             {!loading && (
                 <div>
                     {posts

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as api from '../../apiRequests';
 import styled from 'styled-components';
 import Modal from './Modal';
+import LoadingOverlay from './LoadingOverlay';
 
 export default function Post({ postId, close }) {
     const [editing, setEditing] = useState(false);
@@ -43,28 +44,33 @@ export default function Post({ postId, close }) {
     };
 
     return (
-        <Modal showWhen={post} close={close}>
-            {!loading && (
-                <>
-                    <img src={post.image_url} style={{ width: 200 }} />
-                    <div>{post.body}</div>
+        <>
+            <LoadingOverlay showWhen={loading} />
+            <Modal showWhen={post} close={close}>
+                {!loading && (
+                    <>
+                        <img src={post.image_url} style={{ width: 200 }} />
+                        <div>{post.body}</div>
 
-                    <button onClick={deletePost}>delete</button>
-                    {editing ? (
-                        <>
-                            <button onClick={cancelEditing}>cancel</button>
-                            <input
-                                type='text'
-                                value={bodyText}
-                                onChange={e => setBodyText(e.target.value)}
-                            />
-                            <button onClick={finishEditing}>submit edit</button>
-                        </>
-                    ) : (
-                        <button onClick={startEditing}>edit</button>
-                    )}
-                </>
-            )}
-        </Modal>
+                        <button onClick={deletePost}>delete</button>
+                        {editing ? (
+                            <>
+                                <button onClick={cancelEditing}>cancel</button>
+                                <input
+                                    type='text'
+                                    value={bodyText}
+                                    onChange={e => setBodyText(e.target.value)}
+                                />
+                                <button onClick={finishEditing}>
+                                    submit edit
+                                </button>
+                            </>
+                        ) : (
+                            <button onClick={startEditing}>edit</button>
+                        )}
+                    </>
+                )}
+            </Modal>
+        </>
     );
 }
