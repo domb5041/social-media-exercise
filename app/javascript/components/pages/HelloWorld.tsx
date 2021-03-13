@@ -12,8 +12,15 @@ const HelloWorld = () => {
 
     const [postFocus, setPostFocus] = useState(null);
 
+    const [users, setUsers] = useState([]);
+
+    const [currentUser, setCurrentUser] = useState(10);
+
     useEffect(() => {
         getPosts();
+        api.getUsers().then(d => {
+            setUsers(d.users);
+        });
     }, []);
 
     const getPosts = () => {
@@ -31,19 +38,18 @@ const HelloWorld = () => {
 
     return (
         <ApplicationLayout>
-            {/* <button
-                    onClick={() => {
-                        api.getUsers().then(d => console.log(d));
-                    }}
-                >
-                    get users
-                </button>
-                <button onClick={() => api.createUser('dom', 'butler')}>
-                    create user
-                </button>
-                <button onClick={() => api.deleteUser(1)}>delete user</button> */}
-
-            <CreatePost getPosts={getPosts} />
+            {/* <button onClick={() => api.createUser('big', 'ben')}>
+                create user
+            </button> */}
+            {/* <button onClick={() => api.deleteUser(11)}>delete user</button> */}
+            <select onChange={e => setCurrentUser(e.target.value)}>
+                {users.map((user, i) => (
+                    <option key={i} value={user.id}>
+                        {user.firstname + ' ' + user.lastname}
+                    </option>
+                ))}
+            </select>
+            <CreatePost getPosts={getPosts} currentUser={currentUser} />
             <LoadingOverlay showWhen={loading} />
             {!loading && (
                 <div>

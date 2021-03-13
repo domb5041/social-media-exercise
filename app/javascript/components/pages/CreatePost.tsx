@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import * as api from '../../apiRequests';
 import Modal from './Modal';
 
-export default function CreatePost({ getPosts }) {
+export default function CreatePost({ getPosts, currentUser }) {
     const [bodyText, setBodyText] = useState('');
     const [postId, setPostId] = useState(null);
 
     const startCompose = () => {
-        api.createPost('body', 10).then(d => setPostId(d.post.id));
+        api.createPost('body', currentUser).then(d => setPostId(d.post.id));
     };
 
     const finishCompose = e => {
