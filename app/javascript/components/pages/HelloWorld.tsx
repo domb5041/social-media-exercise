@@ -18,9 +18,10 @@ const HelloWorld = () => {
 
     const getPosts = () => {
         setLoading(true);
-        api.getPosts().then(d => {
+        api.getPosts(100).then(d => {
             setPosts(d.posts);
             setLoading(false);
+            console.log(d);
         });
     };
 
@@ -63,6 +64,7 @@ const HelloWorld = () => {
                         ))}
                 </div>
             )}
+
             {postFocus && (
                 <PostDetail
                     postId={postFocus}

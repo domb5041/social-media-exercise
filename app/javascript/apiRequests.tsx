@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // posts
 
-export const getPosts = () => {
-    const config = { params: { per_page: 1000 } };
+export const getPosts = postsLength => {
+    const config = { params: { per_page: postsLength } };
     return axios
         .get('/api/posts', config)
         .then(res => res.data)
