@@ -12,6 +12,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [loading, setLoading] = useState(true);
     const [userName, setUserName] = useState('');
     const [comments, setComments] = useState([]);
+    const [commentBody, setCommentBody] = useState('');
 
     useEffect(() => {
         getPost();
@@ -57,9 +58,10 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     };
 
     const createComment = () => {
-        api.createComment(post.id, currentUser, 'this is a comment').then(() =>
-            getComments(post.id)
-        );
+        api.createComment(post.id, currentUser, commentBody).then(() => {
+            getComments(post.id);
+            setCommentBody('');
+        });
     };
 
     const getComments = postId => {
@@ -95,6 +97,11 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 </>
                             )
                         )}
+                        <input
+                            style={{ display: 'block' }}
+                            type='text'
+                            onChange={e => setCommentBody(e.target.value)}
+                        />
                         <button onClick={createComment}>add comment</button>
                         <div>
                             {comments.map((comment, i) => (
@@ -102,6 +109,10 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                     key={i}
                                     body={comment.body}
                                     userId={comment.user_id}
+                                    postId={postId}
+                                    commentId={comment.id}
+                                    getPost={getPost}
+                                    currentUser={currentUser}
                                 />
                             ))}
                         </div>

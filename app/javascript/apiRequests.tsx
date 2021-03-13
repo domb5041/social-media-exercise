@@ -110,3 +110,18 @@ export const getComments = postId => {
         .then(res => res.data)
         .catch(err => console.log(err));
 };
+
+export const deleteComment = (postId, commentId) => {
+    return axios
+        .delete(`/api/posts/${postId}/comments/${commentId}`)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+export const editComment = (postId, commentId, body) => {
+    const payload = { comment: { body: body } };
+    return axios
+        .patch(`/api/posts/${postId}/comments/${commentId}`, payload)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
