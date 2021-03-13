@@ -10,6 +10,13 @@ export const getPosts = () => {
         .catch(err => console.log(err));
 };
 
+export const getPost = id => {
+    return axios
+        .get('/api/posts/' + id)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
 export const createPost = (body, userId) => {
     const payload = { post: { body: body, user_id: userId } };
     return axios

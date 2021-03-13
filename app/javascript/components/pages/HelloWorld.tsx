@@ -101,16 +101,20 @@ const HelloWorld = () => {
                                 key={i}
                                 image={post.image_url}
                                 body={post.body}
-                                setPostFocus={() => setPostFocus(post)}
+                                setPostFocus={() => setPostFocus(post.id)}
                             />
                         ))}
                 </div>
             )}
-            <PostDetail
-                post={postFocus}
-                close={() => setPostFocus(null)}
-                getPosts={getPosts}
-            />
+            {postFocus && (
+                <PostDetail
+                    postId={postFocus}
+                    close={() => {
+                        setPostFocus(null);
+                        getPosts();
+                    }}
+                />
+            )}
         </ApplicationLayout>
     );
 };
