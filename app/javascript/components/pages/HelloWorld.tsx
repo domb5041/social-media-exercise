@@ -60,6 +60,7 @@ const HelloWorld = () => {
                                 image={post.image_url}
                                 body={post.body}
                                 setPostFocus={() => setPostFocus(post.id)}
+                                userId={post.user_id}
                             />
                         ))}
                 </div>

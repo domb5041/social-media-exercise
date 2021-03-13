@@ -9,15 +9,23 @@ export default function Post({ postId, close, getPosts }) {
     const [bodyText, setBodyText] = useState('');
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [userName, setUserName] = useState('');
 
     useEffect(() => {
         getPost();
     }, []);
 
+    const getUserName = userId => {
+        api.getUser(userId).then(d => {
+            setUserName(d.user.firstname + ' ' + d.user.lastname);
+        });
+    };
+
     const getPost = () => {
         api.getPost(postId).then(d => {
             setPost(d.post);
             setLoading(false);
+            getUserName(d.post.user_id);
         });
     };
 
@@ -53,7 +61,7 @@ export default function Post({ postId, close, getPosts }) {
                     <>
                         <img src={post.image_url} style={{ width: 200 }} />
                         <div>{post.body}</div>
-
+                        <div>{userName}</div>
                         <button onClick={deletePost}>delete</button>
                         {editing ? (
                             <>

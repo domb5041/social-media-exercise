@@ -54,6 +54,13 @@ export const getUsers = () => {
         .catch(err => console.log(err));
 };
 
+export const getUser = id => {
+    return axios
+        .get('/api/users/' + id)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
 export const createUser = (firstname, lastname) => {
     const payload = {
         firstname: firstname,
