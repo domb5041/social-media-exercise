@@ -4,11 +4,10 @@ import * as api from '../../apiRequests';
 import Post from './Post';
 import PostDetail from './PostDetail';
 import LoadingOverlay from './LoadingOverlay';
+import CreatePost from './CreatePost';
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
-    const [composing, setComposing] = useState(null);
-    const [bodyText, setBodyText] = useState('');
     const [loading, setLoading] = useState(false);
 
     const [postFocus, setPostFocus] = useState(null);
@@ -22,19 +21,6 @@ const HelloWorld = () => {
         api.getPosts().then(d => {
             setPosts(d.posts);
             setLoading(false);
-        });
-    };
-
-    const startCompose = () => {
-        api.createPost('body', 10).then(d => setComposing(d.post.id));
-    };
-
-    const finishCompose = e => {
-        e.preventDefault();
-        api.publishPost(composing, bodyText).then(() => {
-            setComposing(null);
-            setBodyText('');
-            getPosts();
         });
     };
 
@@ -56,8 +42,9 @@ const HelloWorld = () => {
                     create user
                 </button>
                 <button onClick={() => api.deleteUser(1)}>delete user</button> */}
-                <button onClick={startCompose}>new post</button>
-                {composing && (
+
+                <CreatePost getPosts={getPosts} />
+                {/* {composing && (
                     <form
                         id='uploadForm'
                         // onSubmit={e => {
@@ -86,7 +73,7 @@ const HelloWorld = () => {
                             publish post
                         </button>
                     </form>
-                )}
+                )} */}
             </div>
             <LoadingOverlay showWhen={loading} />
             {!loading && (
