@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   api_actions = [:index, :show, :create, :update, :destroy]
 
   root to: 'home#show'
+  get '/', action: :show, controller: 'home'
+  get '/login', action: :show, controller: 'home'
+  get '/posts', action: :show, controller: 'home'
+  get '/profile', action: :show, controller: 'home'
 
   namespace :api, constraints: { format: :json } do
     resources :users, only: api_actions do

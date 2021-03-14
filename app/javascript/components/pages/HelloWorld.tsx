@@ -9,6 +9,7 @@ import CreateUser from './CreateUser';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Posts from './posts/Posts';
+import { Route } from 'react-router-dom';
 
 const StyledApp = styled.div`
     display: flex;
@@ -28,7 +29,7 @@ const StyledPosts = styled.div`
 
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const [users, setUsers] = useState([]);
 
@@ -57,58 +58,33 @@ const HelloWorld = () => {
     return (
         <ApplicationLayout>
             <StyledApp>
-                {/* <div>
-                    <CreateUser getUsers={getUsers} />
-                    <button onClick={() => api.deleteUser(11)}>delete user</button>
-                    <select onChange={e => setCurrentUser(e.target.value)}>
-                        {users.map((user, i) => (
-                            <option key={i} value={user.id}>
-                                {user.firstname + ' ' + user.lastname}
-                            </option>
-                        ))}
-                    </select>
-                </div> */}
                 <Navbar />
-
-                <Posts
-                    loading={loading}
-                    getPosts={getPosts}
-                    currentUser={currentUser}
-                    posts={posts}
-                />
-                {/* {!loading && (
-                    <StyledPosts>
-                        <CreatePost
-                            getPosts={getPosts}
-                            currentUser={currentUser}
-                        />
-                        {posts
-                            .filter(post => post.state === 'published')
-                            .sort(
-                                (a, b) =>
-                                    convertDate(b.created_at) -
-                                    convertDate(a.created_at)
-                            )
-                            .map((post, i) => (
-                                <Post
-                                    key={i}
-                                    image={post.image_url}
-                                    body={post.body}
-                                    setPostFocus={() => setPostFocus(post.id)}
-                                    userId={post.user_id}
-                                />
+                <Route path='/login'>
+                    <div>
+                        <CreateUser getUsers={getUsers} />
+                        <button onClick={() => api.deleteUser(11)}>
+                            delete user
+                        </button>
+                        <select onChange={e => setCurrentUser(e.target.value)}>
+                            {users.map((user, i) => (
+                                <option key={i} value={user.id}>
+                                    {user.firstname + ' ' + user.lastname}
+                                </option>
                             ))}
-                    </StyledPosts>
-                )}
-
-                {postFocus && (
-                    <PostDetail
-                        postId={postFocus}
-                        close={() => setPostFocus(null)}
+                        </select>
+                    </div>
+                </Route>
+                <Route path='/posts'>
+                    <Posts
+                        loading={loading}
                         getPosts={getPosts}
                         currentUser={currentUser}
+                        posts={posts}
                     />
-                )} */}
+                </Route>
+                <Route path='/profile'>
+                    <div>profile</div>
+                </Route>
             </StyledApp>
         </ApplicationLayout>
     );

@@ -1,10 +1,11 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 const ApplicationLayout = (props: { children: React.ReactNode }) => {
     const { children } = props;
 
     return (
-        <React.Fragment>
+        <BrowserRouter>
             {/* <header>
         <nav className="navbar navbar-light bg-light">
           <div className="container">
@@ -14,7 +15,7 @@ const ApplicationLayout = (props: { children: React.ReactNode }) => {
       </header> */}
 
             {children}
-        </React.Fragment>
+        </BrowserRouter>
     );
 };
 
