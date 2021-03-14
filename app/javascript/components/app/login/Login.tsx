@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../../apiRequests';
-import CreateUser from '../login/CreateUser';
+import * as api from '../apiRequests';
+import CreateUser from './CreateUser';
 import LoginUserBadge from './LoginUserBadge';
 import LoadingOverlay from '../common/LoadingOverlay';
 import styled from 'styled-components';

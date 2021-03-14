@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../../apiRequests';
+import * as api from '../apiRequests';
 import Modal from '../common/modal/Modal';
 import ProfileUserBadge from './ProfileUserBadge';
 import Post from '../posts/Post';

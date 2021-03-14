@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ApplicationLayout from '../layouts/ApplicationLayout';
-import * as api from '../../apiRequests';
+import * as api from './apiRequests';
 import styled from 'styled-components';
 import Navbar from './common/Navbar';
 import Posts from './posts/Posts';
@@ -17,7 +17,8 @@ const StyledApp = styled.div`
 `;
 
 export default function HelloWorld() {
-    const [currentUser, setCurrentUser] = useState(10);
+    const masterUserId = 10;
+    const [currentUser, setCurrentUser] = useState(masterUserId);
 
     return (
         <ApplicationLayout>

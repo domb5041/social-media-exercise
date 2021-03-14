@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../../apiRequests';
+import * as api from '../apiRequests';
 import Modal from '../common/modal/Modal';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import FloatingButton from '../common/FloatingButton';

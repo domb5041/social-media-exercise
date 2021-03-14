@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../../apiRequests';
+import * as api from '../apiRequests';
 import styled from 'styled-components';
 import Modal from '../common/modal/Modal';
 import ConfirmModal from '../common/modal/ConfirmModal';

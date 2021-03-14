@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from '../common/modal/Modal';
-import * as api from '../../../apiRequests';
+import * as api from '../apiRequests';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';

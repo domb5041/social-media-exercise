@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ApplicationLayout from '../../layouts/ApplicationLayout';
-import * as api from '../../../apiRequests';
+import * as api from '../apiRequests';
 import Post from './Post';
 import PostDetail from './PostDetail';
 import LoadingOverlay from '../common/LoadingOverlay';
