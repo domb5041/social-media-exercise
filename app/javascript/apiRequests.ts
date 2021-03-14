@@ -79,6 +79,14 @@ export const deleteUser = id => {
         .catch(err => console.log(err));
 };
 
+export const editUser = (id, firstname, lastname) => {
+    const payload = { user: { firstname: firstname, lastname: lastname } };
+    return axios
+        .patch('/api/users/' + id, payload)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
 // images
 
 export const uploadPostImage = id => {
