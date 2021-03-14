@@ -12,8 +12,8 @@ const StyledUser = styled.div`
 `;
 
 const StyledBadge = styled.div`
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     border-radius: 100%;
     margin-right: 10px;

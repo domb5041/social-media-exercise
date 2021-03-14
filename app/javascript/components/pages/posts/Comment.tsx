@@ -53,26 +53,27 @@ export default function PostDetail({
     };
 
     return (
-        <div>
-            {editing ? (
-                <>
-                    <button onClick={cancelEditing}>cancel</button>
-                    <input
-                        type='text'
-                        value={commentBody}
-                        onChange={e => setCommentBody(e.target.value)}
-                    />
-                    <button onClick={finishEditing}>submit edit</button>
-                    <button onClick={deleteComment}>delete</button>
-                </>
-            ) : (
-                <div>
-                    {body} by {userName}
-                    {currentUser == userId && (
-                        <button onClick={startEditing}>edit</button>
-                    )}
-                </div>
-            )}
-        </div>
+        <>
+            <div>
+                {body} by {userName}
+                {currentUser == userId && (
+                    <button onClick={startEditing}>edit</button>
+                )}
+            </div>
+            <Modal
+                showWhen={editing}
+                close={cancelEditing}
+                title='Edit Comment'
+            >
+                <button onClick={cancelEditing}>cancel</button>
+                <input
+                    type='text'
+                    value={commentBody}
+                    onChange={e => setCommentBody(e.target.value)}
+                />
+                <button onClick={finishEditing}>submit edit</button>
+                <button onClick={deleteComment}>delete</button>
+            </Modal>
+        </>
     );
 }
