@@ -2,21 +2,37 @@ import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import CreateUser from '../login/CreateUser';
 import LoginUserBadge from '../common/userBadges/LoginUserBadge';
+import LoadingOverlay from '../common/LoadingOverlay';
+import styled from 'styled-components';
+
+const StyledUsers = styled.div`
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 export default function Login({ currentUser, setCurrentUser }) {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getUsers();
     }, []);
 
     const getUsers = () => {
-        api.getUsers().then(d => {
-            setUsers(d.users);
-        });
+        setLoading(true);
+        api.getUsers()
+            .then(d => {
+                setUsers(d.users);
+            })
+            .then(() => setLoading(false));
     };
+
     return (
-        <div>
+        <StyledUsers>
+            <LoadingOverlay showWhen={loading} />
             <CreateUser getUsers={getUsers} />
             {users.map((user, i) => (
                 <LoginUserBadge
@@ -29,6 +45,6 @@ export default function Login({ currentUser, setCurrentUser }) {
                     userId={user.id}
                 />
             ))}
-        </div>
+        </StyledUsers>
     );
 }

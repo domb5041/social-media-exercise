@@ -17,19 +17,35 @@ const StyledPosts = styled.div`
     align-items: center;
 `;
 
-export default function Posts({ loading, getPosts, currentUser, posts }) {
+export default function Posts({ currentUser }) {
     const [postFocus, setPostFocus] = useState(null);
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const convertDate = date => {
         return Date.parse(date);
     };
 
+    useEffect(() => {
+        getPosts();
+    }, []);
+
+    const getPosts = () => {
+        setLoading(true);
+        api.getPosts(100)
+            .then(d => {
+                setPosts(d.posts);
+            })
+            .then(() => setLoading(false));
+    };
+
     return (
         <>
-            {!loading && (
-                <StyledPosts>
-                    <CreatePost getPosts={getPosts} currentUser={currentUser} />
-                    {posts
+            <StyledPosts>
+                <LoadingOverlay showWhen={loading} />
+                <CreatePost getPosts={getPosts} currentUser={currentUser} />
+                {!loading &&
+                    posts
                         .filter(post => post.state === 'published')
                         .sort(
                             (a, b) =>
@@ -43,10 +59,10 @@ export default function Posts({ loading, getPosts, currentUser, posts }) {
                                 body={post.body}
                                 setPostFocus={() => setPostFocus(post.id)}
                                 userId={post.user_id}
+                                compact={false}
                             />
                         ))}
-                </StyledPosts>
-            )}
+            </StyledPosts>
 
             {postFocus && (
                 <PostDetail

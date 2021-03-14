@@ -4,8 +4,8 @@ import * as api from '../../../apiRequests';
 import User from '../common/userBadges/PostUserBadge';
 
 const StyledPost = styled.div`
-    width: 500px;
-    height: 500px;
+    width: ${props => (props.compact ? 200 : 500)}px;
+    height: ${props => (props.compact ? 200 : 500)}px;
     margin: 10px;
     position: relative;
     border-radius: 10px;
@@ -44,7 +44,7 @@ const StyledOverlay = styled.div`
     color: white;
 `;
 
-export default function Post({ image, body, setPostFocus, userId }) {
+export default function Post({ image, body, setPostFocus, userId, compact }) {
     const [user, setUser] = useState('');
 
     useEffect(() => {
@@ -57,15 +57,18 @@ export default function Post({ image, body, setPostFocus, userId }) {
         });
     };
     return (
-        <StyledPost onClick={setPostFocus}>
+        <StyledPost onClick={setPostFocus} compact={compact}>
             <img src={image} />
-            <StyledOverlay>
-                <User
-                    image={user.image_url}
-                    name={user.firstname + ' ' + user.lastname}
-                />
-                <div>{body}</div>
-            </StyledOverlay>
+            {!compact && (
+                <StyledOverlay>
+                    <User
+                        image={user.image_url}
+                        name={user.firstname + ' ' + user.lastname}
+                    />
+
+                    <div>{body}</div>
+                </StyledOverlay>
+            )}
         </StyledPost>
     );
 }

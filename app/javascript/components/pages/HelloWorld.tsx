@@ -17,22 +17,7 @@ const StyledApp = styled.div`
 `;
 
 export default function HelloWorld() {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
-
     const [currentUser, setCurrentUser] = useState(10);
-
-    useEffect(() => {
-        getPosts();
-    }, []);
-
-    const getPosts = () => {
-        setLoading(true);
-        api.getPosts(100).then(d => {
-            setPosts(d.posts);
-            setLoading(false);
-        });
-    };
 
     return (
         <ApplicationLayout>
@@ -45,12 +30,7 @@ export default function HelloWorld() {
                     />
                 </Route>
                 <Route path='/posts'>
-                    <Posts
-                        loading={loading}
-                        getPosts={getPosts}
-                        currentUser={currentUser}
-                        posts={posts}
-                    />
+                    <Posts currentUser={currentUser} />
                 </Route>
                 <Route path='/profile'>
                     <Profile currentUser={currentUser} />

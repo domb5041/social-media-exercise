@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import styled from 'styled-components';
 import Modal from '../common/Modal';
-import LoadingOverlay from '../common/LoadingOverlay';
 import Comment from './Comment';
 import User from '../common/userBadges/PostUserBadge';
 
@@ -71,8 +70,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
 
     return (
         <>
-            <LoadingOverlay showWhen={loading} />
-            <Modal size='large' showWhen={post} close={close}>
+            <Modal size='large' showWhen={post} close={close} loading={loading}>
                 {!loading && (
                     <>
                         <User

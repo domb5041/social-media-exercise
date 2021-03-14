@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledLoading = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -10,9 +10,10 @@ const StyledLoading = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: white;
+    z-index: 1000;
 `;
 
 export default function Loading({ showWhen }) {
-    return showWhen && <StyledLoading />;
+    return showWhen && <StyledLoading>Loading...</StyledLoading>;
 }

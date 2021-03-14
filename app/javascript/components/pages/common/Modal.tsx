@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
+import LoadingOverlay from './LoadingOverlay';
 
 const modalSizes = {
     small: { width: '500px', height: '300px' },
@@ -8,7 +9,7 @@ const modalSizes = {
 };
 
 const StyledModal = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -96,7 +97,14 @@ const StyledBody = styled.div`
     overflow: auto;
 `;
 
-export default function Modal({ title, children, showWhen, close, size }) {
+export default function Modal({
+    title,
+    children,
+    showWhen,
+    close,
+    size,
+    loading,
+}) {
     return (
         <CSSTransition
             in={showWhen}
@@ -106,6 +114,7 @@ export default function Modal({ title, children, showWhen, close, size }) {
         >
             <StyledModal size={size}>
                 <div className='modal-panel'>
+                    <LoadingOverlay showWhen={loading} />
                     <StyledClose onClick={close}>
                         <i className='fas fa-times' />
                     </StyledClose>
@@ -123,4 +132,5 @@ export default function Modal({ title, children, showWhen, close, size }) {
 
 Modal.defaultProps = {
     size: 'small',
+    loading: false,
 };
