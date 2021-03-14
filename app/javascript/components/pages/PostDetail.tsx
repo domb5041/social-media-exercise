@@ -71,7 +71,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     return (
         <>
             <LoadingOverlay showWhen={loading} />
-            <Modal title={userName} showWhen={post} close={close}>
+            <Modal size='large' title={userName} showWhen={post} close={close}>
                 {!loading && (
                     <>
                         <img src={post.image_url} style={{ width: '100%' }} />

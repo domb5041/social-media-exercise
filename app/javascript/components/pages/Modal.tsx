@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 
+const modalSizes = {
+    small: { width: '500px', height: '300px' },
+    large: { width: '800px', height: '100%' },
+};
+
 const StyledModal = styled.div`
     position: absolute;
     top: 0;
@@ -12,11 +17,13 @@ const StyledModal = styled.div`
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding: 10px;
     & > div {
-        width: 500px;
-        max-width: 90vw;
-        min-height: 300px;
-        max-height: 90vh;
+        width: ${props => modalSizes[props.size].width};
+        height: ${props => modalSizes[props.size].height};
+        max-width: 100vw;
+        max-height: 100vh;
         background-color: white;
         border-radius: 10px;
         overflow: hidden;
@@ -59,13 +66,12 @@ const StyledClose = styled.button`
 const StyledBody = styled.div`
     flex: 1;
     overflow: auto;
-    padding: 0 5px 5px 5px;
 `;
 
-export default function Modal({ title, children, showWhen, close }) {
+export default function Modal({ title, children, showWhen, close, size }) {
     return (
         showWhen && (
-            <StyledModal>
+            <StyledModal size={size}>
                 <div>
                     <StyledHeader>
                         <h4>{title}</h4>
@@ -79,3 +85,7 @@ export default function Modal({ title, children, showWhen, close }) {
         )
     );
 }
+
+Modal.defaultProps = {
+    size: 'small',
+};
