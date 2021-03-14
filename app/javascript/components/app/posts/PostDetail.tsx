@@ -14,7 +14,7 @@ const StyledPostImg = styled.div`
     height: 500px;
     border-radius: 10px;
     overflow: hidden;
-    background-color: silver;
+    background-color: ${props => props.theme.secondary};
     & > img {
         object-fit: cover;
         width: 100%;

@@ -19,7 +19,7 @@ const StyledBadge = styled.div`
     border-radius: 100%;
     margin-right: 10px;
     position: relative;
-    background-color: black;
+    background-color: ${props => props.theme.accent};
     & > img {
         object-fit: cover;
         width: 100%;
@@ -31,7 +31,7 @@ const StyledBadge = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 20px;
-        color: white;
+        color: ${props => props.theme.foregroundDark};
     }
 `;
 

@@ -9,7 +9,8 @@ const StyledUser = styled.div`
     margin: 20px;
     width: 200px;
     align-items: center;
-    border: 1px solid silver;
+    border: 2px solid ${props => props.theme.border};
+    color: ${props => props.theme.foreground};
     border-radius: 10px;
     padding: 20px 10px 10px 10px;
     position: relative;
@@ -28,7 +29,7 @@ const StyledBadge = styled.div`
     border-radius: 100%;
     position: relative;
     display: inline-block;
-    background-color: silver;
+    background-color: ${props => props.theme.secondary};
     & > img {
         object-fit: cover;
         width: 100%;
@@ -40,7 +41,7 @@ const StyledBadge = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 50px;
-        color: white;
+        color: ${props => props.theme.foregroundDark};
     }
 `;
 
@@ -56,6 +57,7 @@ const StyledDeleteButton = styled.button`
     padding: 0;
     width: 30px;
     height: 30px;
+    color: ${props => props.theme.foreground};
 `;
 
 export default function LoginUserBadge({
@@ -90,12 +92,13 @@ export default function LoginUserBadge({
                         onClick={login}
                         text='Login'
                     />
-                    <StyledDeleteButton
-                        disabled={isLoggedIn || userId == 10}
-                        onClick={() => setDeleteUserModal(true)}
-                    >
-                        <i className='fas fa-times'></i>
-                    </StyledDeleteButton>
+                    {!isLoggedIn && userId != 10 && (
+                        <StyledDeleteButton
+                            onClick={() => setDeleteUserModal(true)}
+                        >
+                            <i className='fas fa-times'></i>
+                        </StyledDeleteButton>
+                    )}
                 </div>
                 <ConfirmModal
                     showWhen={deleteUserModal}

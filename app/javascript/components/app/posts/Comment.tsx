@@ -10,7 +10,7 @@ import Button from '../common/Button';
 const StyledComment = styled.div`
     margin-left: 50px;
     padding: 10px;
-    border-top: 1px solid silver;
+    border-top: 2px solid ${props => props.theme.border};
     & .comment-header {
         margin-bottom: 10px;
         display: flex;

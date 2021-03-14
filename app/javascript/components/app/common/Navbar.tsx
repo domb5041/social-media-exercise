@@ -6,29 +6,31 @@ import * as api from '../apiRequests';
 const StyledNavbar = styled.nav`
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid silver;
+    border-bottom: 2px solid ${props => props.theme.border};
 `;
 
 const StyledNavItem = styled(Link)`
     padding: 10px 40px;
     text-decoration: none;
-    color: black;
     width: 70px;
     text-align: center;
     & .nav-label {
         font-size: 14px;
         font-weight: bold;
         text-transform: capitalize;
-        color: ${props => (props.active ? 'magenta' : 'black')};
+        color: ${props =>
+            props.active ? props.theme.accent : props.theme.foreground};
     }
     & .nav-icon {
-        background-color: ${props => (props.active ? 'magenta' : 'black')};
-        border-color: ${props => (props.active ? 'magenta' : 'black')};
+        background-color: ${props =>
+            props.active ? props.theme.accent : props.theme.foreground};
+        border-color: ${props =>
+            props.active ? props.theme.accent : props.theme.foreground};
         border-style: solid;
         border-width: 2px;
         width: 50px;
         height: 50px;
-        color: white;
+        color: ${props => props.theme.foregroundDark};
         margin-bottom: 5px;
         border-radius: 100%;
         display: inline-flex;

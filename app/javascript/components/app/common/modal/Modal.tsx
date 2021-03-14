@@ -25,7 +25,9 @@ const StyledModal = styled.div`
         height: ${props => modalSizes[props.size].height};
         max-width: 100vw;
         max-height: 100vh;
-        background-color: white;
+        background-color: ${props => props.theme.base};
+        border: 2px solid ${props => props.theme.border};
+        color: ${props => props.theme.foreground};
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 5px 50px rgba(0, 0, 0, 0.5);
@@ -65,7 +67,7 @@ const StyledModal = styled.div`
 
 const StyledHeader = styled.div`
     padding: 5px;
-    border-bottom: 1px solid silver;
+    border-bottom: 2px solid ${props => props.theme.border};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,6 +92,7 @@ const StyledClose = styled.button`
     transition: 0.2s;
     cursor: pointer;
     outline: none;
+    color: ${props => props.theme.foreground};
     &:hover {
         transform: scale(1.1);
     }
@@ -102,7 +105,7 @@ const StyledBody = styled.div`
 `;
 
 const StyledFooter = styled.div`
-    border-top: 1px solid silver;
+    border-top: 2px solid ${props => props.theme.border};
     padding: 10px;
 `;
 

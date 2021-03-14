@@ -6,8 +6,8 @@ const StyledButton = styled.button`
     border-radius: 100%;
     width: 80px;
     height: 80px;
-    background-color: magenta;
-    color: white;
+    background-color: ${props => props.theme.accent};
+    color: ${props => props.theme.foregroundDark};
     font-size: 25px;
     position: absolute;
     bottom: 30px;

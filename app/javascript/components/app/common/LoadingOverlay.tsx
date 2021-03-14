@@ -10,7 +10,9 @@ const StyledLoading = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: ${props => props.theme.base};
+    color: ${props => props.theme.foreground};
+    font-size: 25px;
     z-index: 1000;
 `;
 

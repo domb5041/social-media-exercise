@@ -12,7 +12,8 @@ const StyledPost = styled.div`
     overflow: hidden;
     cursor: pointer;
     flex-shrink: 0;
-    background-color: silver;
+    background-color: ${props => props.theme.secondary};
+    border: 2px solid ${props => props.theme.border};
     & > img {
         object-fit: cover;
         width: 100%;

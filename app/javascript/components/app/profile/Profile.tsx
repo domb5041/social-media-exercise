@@ -48,7 +48,6 @@ export default function Profile({ currentUser }) {
             <StyledProfile>
                 <LoadingOverlay showWhen={loading} />
                 <ProfileUserBadge currentUser={currentUser} />
-                <CreatePost getPosts={getPosts} currentUser={currentUser} />
                 {!loading && (
                     <StyledPostGrid>
                         {posts
@@ -71,6 +70,7 @@ export default function Profile({ currentUser }) {
                     </StyledPostGrid>
                 )}
             </StyledProfile>
+            <CreatePost getPosts={getPosts} currentUser={currentUser} />
             <PostDetail
                 postId={postFocus}
                 close={() => setPostFocus(null)}

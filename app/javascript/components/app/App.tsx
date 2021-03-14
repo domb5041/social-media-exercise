@@ -4,7 +4,7 @@ import * as api from './apiRequests';
 import styled from 'styled-components';
 import Navbar from './common/Navbar';
 import Posts from './posts/Posts';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Login from './login/Login';
 import Profile from './profile/Profile';
 
@@ -14,6 +14,7 @@ const StyledApp = styled.div`
     overflow: hidden;
     height: 100vh;
     width: 100vw;
+    background-color: ${props => props.theme.base};
 `;
 
 export default function HelloWorld() {
@@ -24,6 +25,7 @@ export default function HelloWorld() {
         <ApplicationLayout>
             <StyledApp>
                 <Navbar currentUser={currentUser} />
+                <Redirect exact from='/' to='/posts' />
                 <Route path='/login'>
                     <Login
                         currentUser={currentUser}

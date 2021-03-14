@@ -14,6 +14,8 @@ const StyledUser = styled.div`
         font-size: 25px;
         position: relative;
         margin-top: 20px;
+        margin-bottom: 10px;
+        color: ${props => props.theme.foreground};
     }
 `;
 
@@ -24,7 +26,7 @@ const StyledBadge = styled.div`
     border-radius: 100%;
     position: relative;
     display: inline-block;
-    background-color: silver;
+    background-color: ${props => props.theme.secondary};
     & > img {
         object-fit: cover;
         width: 100%;
@@ -36,7 +38,7 @@ const StyledBadge = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 70px;
-        color: white;
+        color: ${props => props.theme.foreground};
     }
     & .edit-image-button {
         position: absolute;
@@ -48,7 +50,7 @@ const StyledBadge = styled.div`
         width: 100%;
         height: 40px;
         font-size: 20px;
-        color: white;
+        color: ${props => props.theme.foreground};
         cursor: pointer;
         outline: none;
     }

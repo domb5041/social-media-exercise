@@ -4,8 +4,11 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
     border: none;
     border-radius: 50px;
-    background-color: ${props => (props.secondary ? 'silver' : 'magenta')};
-    color: ${props => (props.secondary ? 'black' : 'white')};
+    font-weight: bold;
+    background-color: ${props =>
+        props.secondary ? props.theme.secondary : props.theme.accent};
+    color: ${props =>
+        props.secondary ? props.theme.foreground : props.theme.foregroundDark};
     font-size: 16px;
     text-align: center;
     padding: 5px 14px;
