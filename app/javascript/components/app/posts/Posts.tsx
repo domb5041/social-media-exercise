@@ -63,15 +63,12 @@ export default function Posts({ currentUser }) {
                             />
                         ))}
             </StyledPosts>
-
-            {postFocus && (
-                <PostDetail
-                    postId={postFocus}
-                    close={() => setPostFocus(null)}
-                    getPosts={getPosts}
-                    currentUser={currentUser}
-                />
-            )}
+            <PostDetail
+                postId={postFocus}
+                close={() => setPostFocus(null)}
+                getPosts={getPosts}
+                currentUser={currentUser}
+            />
         </>
     );
 }

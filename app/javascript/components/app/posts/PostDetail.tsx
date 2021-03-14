@@ -54,8 +54,8 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [confirmDelete, setConfirmDelete] = useState(false);
 
     useEffect(() => {
-        getPost();
-    }, []);
+        if (postId) getPost();
+    }, [postId]);
 
     const getUser = userId => {
         api.getUser(userId).then(d => {
@@ -123,87 +123,82 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     );
 
     return (
-        <>
-            <Modal
-                size='large'
-                showWhen={post}
-                close={close}
-                loading={loading}
-                footerElements={footerElements()}
-                title='Post'
-            >
-                {!loading && (
-                    <>
-                        <StyledPostImg>
-                            <img
-                                src={post.image_url}
-                                style={{ width: '100%' }}
-                            />
-                        </StyledPostImg>
-                        <StyledAuthorRow>
-                            <User
-                                image={user.image_url}
-                                name={user.firstname + ' ' + user.lastname}
-                            />
-                            <div>
-                                <Button
-                                    text='Edit'
-                                    onClick={startEditing}
-                                    style={{ marginRight: 10 }}
-                                    showWhen={currentUser == post.user_id}
-                                    secondary
-                                />
-                                <Button
-                                    text='Delete'
-                                    onClick={() => setConfirmDelete(true)}
-                                    showWhen={currentUser == post.user_id}
-                                    secondary
-                                />
-                            </div>
-                        </StyledAuthorRow>
-                        <StyledPostRow>{post.body}</StyledPostRow>
-                        <div>
-                            {comments.map((comment, i) => (
-                                <Comment
-                                    key={i}
-                                    body={comment.body}
-                                    userId={comment.user_id}
-                                    postId={postId}
-                                    commentId={comment.id}
-                                    getPost={getPost}
-                                    currentUser={currentUser}
-                                />
-                            ))}
-                        </div>
-                        <Modal
-                            showWhen={editing}
-                            close={cancelEditing}
-                            title='Edit Post'
-                            size='small'
-                            footerElements={
-                                <ConfirmFooter
-                                    cancelAction={cancelEditing}
-                                    confirmAction={finishEditing}
-                                    confirmDisabled={bodyText === post.body}
-                                />
-                            }
-                        >
-                            <input
-                                type='text'
-                                value={bodyText}
-                                onChange={e => setBodyText(e.target.value)}
-                            />
-                        </Modal>
-                        <ConfirmModal
-                            showWhen={confirmDelete}
-                            close={() => setConfirmDelete(false)}
-                            title='Delete Post'
-                            confirmAction={deletePost}
-                            confirmText='Delete'
+        <Modal
+            size='large'
+            showWhen={postId}
+            close={close}
+            loading={loading}
+            footerElements={footerElements()}
+            title='Post'
+        >
+            {!loading && (
+                <>
+                    <StyledPostImg>
+                        <img src={post.image_url} />
+                    </StyledPostImg>
+                    <StyledAuthorRow>
+                        <User
+                            image={user.image_url}
+                            name={user.firstname + ' ' + user.lastname}
                         />
-                    </>
-                )}
-            </Modal>
-        </>
+                        <div>
+                            <Button
+                                text='Edit'
+                                onClick={startEditing}
+                                style={{ marginRight: 10 }}
+                                showWhen={currentUser == post.user_id}
+                                secondary
+                            />
+                            <Button
+                                text='Delete'
+                                onClick={() => setConfirmDelete(true)}
+                                showWhen={currentUser == post.user_id}
+                                secondary
+                            />
+                        </div>
+                    </StyledAuthorRow>
+                    <StyledPostRow>{post.body}</StyledPostRow>
+                    <div>
+                        {comments.map((comment, i) => (
+                            <Comment
+                                key={i}
+                                body={comment.body}
+                                userId={comment.user_id}
+                                postId={postId}
+                                commentId={comment.id}
+                                getPost={getPost}
+                                currentUser={currentUser}
+                            />
+                        ))}
+                    </div>
+                    <Modal
+                        showWhen={editing}
+                        close={cancelEditing}
+                        title='Edit Post'
+                        size='small'
+                        footerElements={
+                            <ConfirmFooter
+                                cancelAction={cancelEditing}
+                                confirmAction={finishEditing}
+                                confirmDisabled={bodyText === post.body}
+                            />
+                        }
+                    >
+                        <input
+                            type='text'
+                            value={bodyText}
+                            onChange={e => setBodyText(e.target.value)}
+                        />
+                    </Modal>
+                    <ConfirmModal
+                        showWhen={confirmDelete}
+                        close={() => setConfirmDelete(false)}
+                        title='Delete Post'
+                        confirmAction={deletePost}
+                        confirmText='Delete'
+                    />
+                </>
+            )}
+        </Modal>
     );
 }

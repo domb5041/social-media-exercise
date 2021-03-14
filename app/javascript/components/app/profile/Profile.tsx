@@ -71,14 +71,12 @@ export default function Profile({ currentUser }) {
                     </StyledPostGrid>
                 )}
             </StyledProfile>
-            {postFocus && (
-                <PostDetail
-                    postId={postFocus}
-                    close={() => setPostFocus(null)}
-                    getPosts={getPosts}
-                    currentUser={currentUser}
-                />
-            )}
+            <PostDetail
+                postId={postFocus}
+                close={() => setPostFocus(null)}
+                getPosts={getPosts}
+                currentUser={currentUser}
+            />
         </>
     );
 }
