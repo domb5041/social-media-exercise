@@ -7,6 +7,7 @@ import LoadingOverlay from './LoadingOverlay';
 import CreatePost from './CreatePost';
 import CreateUser from './CreateUser';
 import styled from 'styled-components';
+import Navbar from './Navbar';
 
 const StyledApp = styled.div`
     display: flex;
@@ -61,9 +62,9 @@ const HelloWorld = () => {
     return (
         <ApplicationLayout>
             <StyledApp>
-                <div>
+                {/* <div>
                     <CreateUser getUsers={getUsers} />
-                    {/* <button onClick={() => api.deleteUser(11)}>delete user</button> */}
+                    <button onClick={() => api.deleteUser(11)}>delete user</button>
                     <select onChange={e => setCurrentUser(e.target.value)}>
                         {users.map((user, i) => (
                             <option key={i} value={user.id}>
@@ -71,7 +72,8 @@ const HelloWorld = () => {
                             </option>
                         ))}
                     </select>
-                </div>
+                </div> */}
+                <Navbar />
                 <LoadingOverlay showWhen={loading} />
 
                 {!loading && (
