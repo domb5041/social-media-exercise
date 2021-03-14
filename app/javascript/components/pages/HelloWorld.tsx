@@ -8,6 +8,7 @@ import CreatePost from './CreatePost';
 import CreateUser from './CreateUser';
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import Posts from './Posts';
 
 const StyledApp = styled.div`
     display: flex;
@@ -28,8 +29,6 @@ const StyledPosts = styled.div`
 const HelloWorld = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
-
-    const [postFocus, setPostFocus] = useState(null);
 
     const [users, setUsers] = useState([]);
 
@@ -55,10 +54,6 @@ const HelloWorld = () => {
         });
     };
 
-    const convertDate = date => {
-        return Date.parse(date);
-    };
-
     return (
         <ApplicationLayout>
             <StyledApp>
@@ -74,9 +69,14 @@ const HelloWorld = () => {
                     </select>
                 </div> */}
                 <Navbar />
-                <LoadingOverlay showWhen={loading} />
 
-                {!loading && (
+                <Posts
+                    loading={loading}
+                    getPosts={getPosts}
+                    currentUser={currentUser}
+                    posts={posts}
+                />
+                {/* {!loading && (
                     <StyledPosts>
                         <CreatePost
                             getPosts={getPosts}
@@ -108,7 +108,7 @@ const HelloWorld = () => {
                         getPosts={getPosts}
                         currentUser={currentUser}
                     />
-                )}
+                )} */}
             </StyledApp>
         </ApplicationLayout>
     );
