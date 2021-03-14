@@ -79,17 +79,17 @@ const StyledClose = styled.button`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     padding: 0;
     transition: 0.1s;
     position: absolute;
     top: 0;
     right: 0;
     cursor: pointer;
-    &:hover {
-        transform: scale(1.1);
-    }
+    background-color: rgba(255, 255, 255, 0.4);
+    outline: none;
+    border-bottom-left-radius: 10px;
 `;
 
 const StyledBody = styled.div`
@@ -115,15 +115,15 @@ export default function Modal({
             <StyledModal size={size}>
                 <div className='modal-panel'>
                     <LoadingOverlay showWhen={loading} />
-                    <StyledClose onClick={close}>
-                        <i className='fas fa-times' />
-                    </StyledClose>
                     {title && (
                         <StyledHeader>
                             <h4>{title}</h4>
                         </StyledHeader>
                     )}
                     <StyledBody>{children}</StyledBody>
+                    <StyledClose onClick={close}>
+                        <i className='fas fa-times' />
+                    </StyledClose>
                 </div>
             </StyledModal>
         </CSSTransition>

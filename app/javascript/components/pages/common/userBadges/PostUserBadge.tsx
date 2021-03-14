@@ -16,7 +16,6 @@ const StyledBadge = styled.div`
     height: 50px;
     overflow: hidden;
     border-radius: 100%;
-    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.8);
     margin-right: 10px;
     position: relative;
     background-color: orange;

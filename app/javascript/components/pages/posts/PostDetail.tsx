@@ -5,6 +5,19 @@ import Modal from '../common/Modal';
 import Comment from './Comment';
 import User from '../common/userBadges/PostUserBadge';
 
+const StyledAuthorRow = styled.div`
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+const StyledPostRow = styled.div`
+    padding: 10px 40px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid silver;
+`;
+
 export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [editing, setEditing] = useState(false);
     const [bodyText, setBodyText] = useState('');
@@ -73,40 +86,17 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
             <Modal size='large' showWhen={post} close={close} loading={loading}>
                 {!loading && (
                     <>
-                        <User
-                            image={user.image_url}
-                            name={user.firstname + ' ' + user.lastname}
-                        />
                         <img src={post.image_url} style={{ width: '100%' }} />
-
-                        {editing ? (
-                            <>
-                                <input
-                                    type='text'
-                                    value={bodyText}
-                                    onChange={e => setBodyText(e.target.value)}
-                                />
-                                <button onClick={cancelEditing}>cancel</button>
-                                <button
-                                    onClick={finishEditing}
-                                    disabled={bodyText === post.body}
-                                >
-                                    submit edit
-                                </button>
-                                <button onClick={deletePost}>delete</button>
-                            </>
-                        ) : (
-                            <div>
-                                {post.body}
-                                {currentUser == post.user_id && (
-                                    <>
-                                        <button onClick={startEditing}>
-                                            edit
-                                        </button>
-                                    </>
-                                )}
-                            </div>
-                        )}
+                        <StyledAuthorRow>
+                            <User
+                                image={user.image_url}
+                                name={user.firstname + ' ' + user.lastname}
+                            />
+                            {currentUser == post.user_id && (
+                                <button onClick={startEditing}>edit</button>
+                            )}
+                        </StyledAuthorRow>
+                        <StyledPostRow>{post.body}</StyledPostRow>
                         <input
                             style={{ display: 'block' }}
                             type='text'
@@ -129,6 +119,25 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 />
                             ))}
                         </div>
+                        <Modal
+                            showWhen={editing}
+                            close={cancelEditing}
+                            title='Edit Post'
+                        >
+                            <input
+                                type='text'
+                                value={bodyText}
+                                onChange={e => setBodyText(e.target.value)}
+                            />
+                            <button onClick={cancelEditing}>cancel</button>
+                            <button
+                                onClick={finishEditing}
+                                disabled={bodyText === post.body}
+                            >
+                                submit edit
+                            </button>
+                            <button onClick={deletePost}>delete</button>
+                        </Modal>
                     </>
                 )}
             </Modal>
