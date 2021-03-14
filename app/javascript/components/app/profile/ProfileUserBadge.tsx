@@ -154,16 +154,15 @@ export default function User({ currentUser }) {
                     />
                 }
             >
-                <div style={{ padding: 10, textAlign: 'center' }}>
-                    <TextInput
-                        value={firstnameText}
-                        onChange={e => setFirstnameText(e.target.value)}
-                    />
-                    <TextInput
-                        value={lastnameText}
-                        onChange={e => setLastnameText(e.target.value)}
-                    />
-                </div>
+                <TextInput
+                    style={{ marginBottom: 10 }}
+                    value={firstnameText}
+                    onChange={e => setFirstnameText(e.target.value)}
+                />
+                <TextInput
+                    value={lastnameText}
+                    onChange={e => setLastnameText(e.target.value)}
+                />
             </Modal>
         </>
     );

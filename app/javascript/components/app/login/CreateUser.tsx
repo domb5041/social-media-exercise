@@ -42,17 +42,15 @@ export default function CreateUser({ getUsers }) {
                     />
                 }
             >
-                <div style={{ padding: 10, textAlign: 'center' }}>
-                    <TextInput
-                        style={{ marginRight: 10 }}
-                        onChange={e => setNewFirstname(e.target.value)}
-                        placeholder='First Name'
-                    />
-                    <TextInput
-                        onChange={e => setNewLastname(e.target.value)}
-                        placeholder='Last Name'
-                    />
-                </div>
+                <TextInput
+                    style={{ marginBottom: 10 }}
+                    onChange={e => setNewFirstname(e.target.value)}
+                    placeholder='First Name'
+                />
+                <TextInput
+                    onChange={e => setNewLastname(e.target.value)}
+                    placeholder='Last Name'
+                />
             </Modal>
         </>
     );

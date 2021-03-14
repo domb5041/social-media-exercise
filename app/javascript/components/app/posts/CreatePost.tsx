@@ -4,7 +4,7 @@ import Modal from '../common/modal/Modal';
 import styled from 'styled-components';
 import FloatingButton from '../common/FloatingButton';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
-import TextInput from '../common/TextInput';
+import TextArea from '../common/TextArea';
 
 export default function CreatePost({ getPosts, currentUser }) {
     const [bodyText, setBodyText] = useState('');
@@ -43,19 +43,14 @@ export default function CreatePost({ getPosts, currentUser }) {
                     />
                 }
             >
-                <div style={{ padding: 10, textAlign: 'center' }}>
-                    <TextInput
-                        style={{ display: 'block' }}
-                        onChange={e => setBodyText(e.target.value)}
-                    />
-                    <input
-                        style={{ display: 'block' }}
-                        type='file'
-                        id='file'
-                        name='file'
-                        onChange={() => api.uploadPostImage(postId)}
-                    />
-                </div>
+                <TextArea onChange={e => setBodyText(e.target.value)} />
+                <input
+                    style={{ display: 'block' }}
+                    type='file'
+                    id='file'
+                    name='file'
+                    onChange={() => api.uploadPostImage(postId)}
+                />
             </Modal>
         </>
     );

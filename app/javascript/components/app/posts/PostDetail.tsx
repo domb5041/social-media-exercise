@@ -8,6 +8,7 @@ import User from './PostUserBadge';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
+import TextArea from '../common/TextArea';
 
 const StyledPostImg = styled.div`
     width: 100%;
@@ -184,7 +185,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                             />
                         }
                     >
-                        <input
+                        <TextArea
                             type='text'
                             value={bodyText}
                             onChange={e => setBodyText(e.target.value)}

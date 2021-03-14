@@ -6,6 +6,7 @@ import ConfirmModal from '../common/modal/ConfirmModal';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import LoadingOverlay from '../common/LoadingOverlay';
 import Button from '../common/Button';
+import TextInput from '../common/TextInput';
 
 const StyledComment = styled.div`
     margin-left: 50px;
@@ -110,8 +111,7 @@ export default function PostDetail({
                         />
                     }
                 >
-                    <input
-                        type='text'
+                    <TextInput
                         value={commentBody}
                         onChange={e => setCommentBody(e.target.value)}
                     />

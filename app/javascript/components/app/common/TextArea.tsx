@@ -1,19 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledInput = styled.input`
-    border-radius: 50px;
+const StyledInput = styled.textarea`
+    border-radius: 10px;
     border: 2px solid ${props => props.theme.border};
     background-color: ${props => props.theme.foregroundDark};
     color: ${props => props.theme.foreground};
     font-size: 16px;
-    padding: 5px 14px;
+    padding: 14px;
     outline: none;
     width: 100%;
     box-sizing: border-box;
+    height: 80px;
+    resize: none;
+    font-family: sans-serif;
 `;
 
-export default function TextInput({
+export default function TextArea({
     type,
     onChange,
     value,
@@ -31,7 +34,7 @@ export default function TextInput({
     );
 }
 
-TextInput.defaultProps = {
+TextArea.defaultProps = {
     type: 'text',
     onChange: null,
     value: null,
