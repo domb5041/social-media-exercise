@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import CreateUser from '../login/CreateUser';
+import LoginUserBadge from '../common/userBadges/LoginUserBadge';
 
 export default function Login({ currentUser, setCurrentUser }) {
     const [users, setUsers] = useState([]);
@@ -17,20 +18,17 @@ export default function Login({ currentUser, setCurrentUser }) {
     return (
         <div>
             <CreateUser getUsers={getUsers} />
-
-            <select
-                value={currentUser}
-                onChange={e => setCurrentUser(e.target.value)}
-            >
-                {users.map((user, i) => (
-                    <option key={i} value={user.id}>
-                        {user.firstname + ' ' + user.lastname}
-                    </option>
-                ))}
-            </select>
-            {/* <button onClick={() => api.deleteUser(currentUser)}>
-                delete user
-            </button> */}
+            {users.map((user, i) => (
+                <LoginUserBadge
+                    key={i}
+                    image={user.image_url}
+                    name={user.firstname + ' ' + user.lastname}
+                    login={() => setCurrentUser(user.id)}
+                    deleteUser={() => api.deleteUser(user.id)}
+                    isLoggedIn={currentUser == user.id}
+                    userId={user.id}
+                />
+            ))}
         </div>
     );
 }
