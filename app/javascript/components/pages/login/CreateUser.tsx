@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../apiRequests';
-import Modal from './Modal';
+import * as api from '../../../apiRequests';
+import Modal from '../Modal';
 
 export default function CreateUser({ getUsers }) {
     const [creatingUser, setCreatingUser] = useState(false);

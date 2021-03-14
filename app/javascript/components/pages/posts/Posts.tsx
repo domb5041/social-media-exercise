@@ -5,7 +5,7 @@ import Post from './Post';
 import PostDetail from './PostDetail';
 import LoadingOverlay from '../LoadingOverlay';
 import CreatePost from './CreatePost';
-import CreateUser from '../CreateUser';
+import CreateUser from '../login/CreateUser';
 import styled from 'styled-components';
 import Navbar from '../Navbar';
 
