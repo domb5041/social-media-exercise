@@ -59,7 +59,7 @@ export default function Post({ image, body, setPostFocus, userId, compact }) {
     };
     return (
         <StyledPost onClick={setPostFocus} compact={compact}>
-            <img src={image} />
+            {image && <img src={image} />}
             {!compact && (
                 <>
                     <StyledAuthor>

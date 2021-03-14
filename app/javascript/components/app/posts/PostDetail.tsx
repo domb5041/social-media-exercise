@@ -94,6 +94,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
 
     const deletePost = () => {
         close();
+        setConfirmDelete(false);
         api.deletePost(post.id).then(() => getPosts());
     };
 
@@ -134,9 +135,11 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
         >
             {!loading && (
                 <>
-                    <StyledPostImg>
-                        <img src={post.image_url} />
-                    </StyledPostImg>
+                    {post.image_url && (
+                        <StyledPostImg>
+                            <img src={post.image_url} />
+                        </StyledPostImg>
+                    )}
                     <StyledAuthorRow>
                         <User
                             image={user.image_url}

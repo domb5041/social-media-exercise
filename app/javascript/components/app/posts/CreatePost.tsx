@@ -43,7 +43,10 @@ export default function CreatePost({ getPosts, currentUser }) {
                     />
                 }
             >
-                <TextArea onChange={e => setBodyText(e.target.value)} />
+                <TextArea
+                    onChange={e => setBodyText(e.target.value)}
+                    placeholder="what's on your mind?"
+                />
                 <input
                     style={{ display: 'block' }}
                     type='file'
