@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Modal from '../Modal';
+import Modal from '../modal/Modal';
 import * as api from '../../../../apiRequests';
 
 const StyledUser = styled.div`

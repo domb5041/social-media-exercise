@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
-import LoadingOverlay from './LoadingOverlay';
+import LoadingOverlay from '../LoadingOverlay';
 
 const modalSizes = {
     small: { width: '500px', height: '300px' },

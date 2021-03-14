@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as api from '../../../../apiRequests';
-import Modal from '../Modal';
+import ConfirmModal from '../modal/ConfirmModal';
 
 const StyledUser = styled.div`
     text-align: center;
@@ -94,16 +94,14 @@ export default function LoginUserBadge({
                         <i className='fas fa-times'></i>
                     </StyledDeleteButton>
                 </div>
-                <Modal
+                <ConfirmModal
                     showWhen={deleteUserModal}
                     close={() => setDeleteUserModal(false)}
                     title={'Delete user: ' + name}
-                >
-                    <button onClick={deleteUser}>delete</button>
-                    <button onClick={() => setDeleteUserModal(false)}>
-                        cancel
-                    </button>
-                </Modal>
+                    confirmAction={deleteUser}
+                    confirmText='Delete'
+                    bodyText='You are about to delete this user. This action cannot be undone.'
+                />
             </StyledUser>
         </>
     );

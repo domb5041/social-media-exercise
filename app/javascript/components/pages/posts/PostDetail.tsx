@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import styled from 'styled-components';
-import Modal from '../common/Modal';
+import Modal from '../common/modal/Modal';
+import ConfirmModal from '../common/modal/ConfirmModal';
 import Comment from './Comment';
 import User from '../common/userBadges/PostUserBadge';
+import ConfirmFooter from '../common/modal/ConfirmFooter';
 
 const StyledAuthorRow = styled.div`
     padding: 10px;
@@ -34,6 +36,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [user, setUser] = useState('');
     const [comments, setComments] = useState([]);
     const [commentBody, setCommentBody] = useState('');
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     useEffect(() => {
         getPost();
@@ -121,7 +124,16 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 name={user.firstname + ' ' + user.lastname}
                             />
                             {currentUser == post.user_id && (
-                                <button onClick={startEditing}>edit</button>
+                                <div>
+                                    <button onClick={startEditing}>
+                                        Edit Post
+                                    </button>
+                                    <button
+                                        onClick={() => setConfirmDelete(true)}
+                                    >
+                                        Delete Post
+                                    </button>
+                                </div>
                             )}
                         </StyledAuthorRow>
                         <StyledPostRow>{post.body}</StyledPostRow>
@@ -142,21 +154,27 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                             showWhen={editing}
                             close={cancelEditing}
                             title='Edit Post'
+                            footerElements={
+                                <ConfirmFooter
+                                    cancelAction={cancelEditing}
+                                    confirmAction={finishEditing}
+                                    confirmDisabled={bodyText === post.body}
+                                />
+                            }
                         >
                             <input
                                 type='text'
                                 value={bodyText}
                                 onChange={e => setBodyText(e.target.value)}
                             />
-                            <button onClick={cancelEditing}>cancel</button>
-                            <button
-                                onClick={finishEditing}
-                                disabled={bodyText === post.body}
-                            >
-                                submit edit
-                            </button>
-                            <button onClick={deletePost}>delete</button>
                         </Modal>
+                        <ConfirmModal
+                            showWhen={confirmDelete}
+                            close={() => setConfirmDelete(false)}
+                            title='Delete Post'
+                            confirmAction={deletePost}
+                            confirmText='Delete'
+                        />
                     </>
                 )}
             </Modal>

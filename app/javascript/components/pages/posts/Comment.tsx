@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import styled from 'styled-components';
-import Modal from '../common/Modal';
+import Modal from '../common/modal/Modal';
+import ConfirmModal from '../common/modal/ConfirmModal';
+import ConfirmFooter from '../common/modal/ConfirmFooter';
 import LoadingOverlay from '../common/LoadingOverlay';
 
 const StyledComment = styled.div`
@@ -27,6 +29,7 @@ export default function PostDetail({
     const [userName, setUserName] = useState('');
     const [editing, setEditing] = useState(false);
     const [commentBody, setCommentBody] = useState('');
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     useEffect(() => {
         getUserName(userId);
@@ -71,24 +74,41 @@ export default function PostDetail({
                 <div className='comment-body'>{body}</div>
                 <div className='comment-footer'>
                     {currentUser == userId && (
-                        <button onClick={startEditing}>edit</button>
+                        <>
+                            <button onClick={startEditing}>edit comment</button>
+                            <button onClick={() => setConfirmDelete(true)}>
+                                delete comment
+                            </button>
+                        </>
                     )}
                 </div>
-            </StyledComment>
-            <Modal
-                showWhen={editing}
-                close={cancelEditing}
-                title='Edit Comment'
-            >
-                <button onClick={cancelEditing}>cancel</button>
-                <input
-                    type='text'
-                    value={commentBody}
-                    onChange={e => setCommentBody(e.target.value)}
+                <Modal
+                    showWhen={editing}
+                    close={cancelEditing}
+                    title='Edit Comment'
+                    footerElements={
+                        <ConfirmFooter
+                            confirmAction={finishEditing}
+                            confirmText='Save'
+                            confirmDisabled={commentBody === body}
+                            cancelAction={cancelEditing}
+                        />
+                    }
+                >
+                    <input
+                        type='text'
+                        value={commentBody}
+                        onChange={e => setCommentBody(e.target.value)}
+                    />
+                </Modal>
+                <ConfirmModal
+                    showWhen={confirmDelete}
+                    close={() => setConfirmDelete(false)}
+                    title='Delete Comment'
+                    confirmAction={deleteComment}
+                    confirmText='Delete'
                 />
-                <button onClick={finishEditing}>submit edit</button>
-                <button onClick={deleteComment}>delete</button>
-            </Modal>
+            </StyledComment>
         </>
     );
 }
