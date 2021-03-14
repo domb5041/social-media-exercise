@@ -18,6 +18,14 @@ const StyledPostRow = styled.div`
     border-bottom: 1px solid silver;
 `;
 
+const StyledCommentInput = styled.div`
+    display: flex;
+    & > input {
+        flex: 1;
+        margin-right: 5px;
+    }
+`;
+
 export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [editing, setEditing] = useState(false);
     const [bodyText, setBodyText] = useState('');
@@ -81,9 +89,29 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
         api.getComments(postId).then(d => setComments(d.comments));
     };
 
+    const footerElements = () => (
+        <StyledCommentInput>
+            <input
+                style={{ display: 'block' }}
+                type='text'
+                value={commentBody}
+                onChange={e => setCommentBody(e.target.value)}
+            />
+            <button disabled={!commentBody} onClick={createComment}>
+                add comment
+            </button>
+        </StyledCommentInput>
+    );
+
     return (
         <>
-            <Modal size='large' showWhen={post} close={close} loading={loading}>
+            <Modal
+                size='large'
+                showWhen={post}
+                close={close}
+                loading={loading}
+                footerElements={footerElements()}
+            >
                 {!loading && (
                     <>
                         <img src={post.image_url} style={{ width: '100%' }} />
@@ -97,15 +125,6 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                             )}
                         </StyledAuthorRow>
                         <StyledPostRow>{post.body}</StyledPostRow>
-                        <input
-                            style={{ display: 'block' }}
-                            type='text'
-                            value={commentBody}
-                            onChange={e => setCommentBody(e.target.value)}
-                        />
-                        <button disabled={!commentBody} onClick={createComment}>
-                            add comment
-                        </button>
                         <div>
                             {comments.map((comment, i) => (
                                 <Comment

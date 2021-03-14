@@ -97,6 +97,11 @@ const StyledBody = styled.div`
     overflow: auto;
 `;
 
+const StyledFooter = styled.div`
+    border-top: 1px solid black;
+    padding: 10px;
+`;
+
 export default function Modal({
     title,
     children,
@@ -104,6 +109,7 @@ export default function Modal({
     close,
     size,
     loading,
+    footerElements,
 }) {
     return (
         <CSSTransition
@@ -124,6 +130,9 @@ export default function Modal({
                     <StyledClose onClick={close}>
                         <i className='fas fa-times' />
                     </StyledClose>
+                    {footerElements && (
+                        <StyledFooter>{footerElements}</StyledFooter>
+                    )}
                 </div>
             </StyledModal>
         </CSSTransition>
