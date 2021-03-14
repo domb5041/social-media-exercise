@@ -8,11 +8,18 @@ import LoadingOverlay from '../common/LoadingOverlay';
 import Button from '../common/Button';
 
 const StyledComment = styled.div`
-    margin-left: 20px;
+    margin-left: 50px;
     padding: 10px;
-    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
     & .comment-header {
         margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    & .user-name {
+        font-weight: bold;
+        text-transform: capitalize;
     }
     & .comment-body {
         margin-bottom: 10px;
@@ -71,25 +78,25 @@ export default function PostDetail({
     return (
         <>
             <StyledComment>
-                <div className='comment-header'>{userName}</div>
-                <div className='comment-body'>{body}</div>
-                <div className='comment-footer'>
-                    <>
+                <div className='comment-header'>
+                    <span className='user-name'>{userName}</span>
+                    <div>
                         <Button
-                            text='Edit Comment'
+                            text='Edit'
                             onClick={startEditing}
                             showWhen={currentUser == userId}
                             style={{ marginRight: 10 }}
                             secondary
                         />
                         <Button
-                            text='Delete Comment'
+                            text='Delete'
                             onClick={() => setConfirmDelete(true)}
                             showWhen={currentUser == userId}
                             secondary
                         />
-                    </>
+                    </div>
                 </div>
+                <div className='comment-body'>{body}</div>
                 <Modal
                     showWhen={editing}
                     close={cancelEditing}

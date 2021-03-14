@@ -8,6 +8,7 @@ const StyledUser = styled.div`
         text-transform: capitalize;
         font-size: 18px;
         position: relative;
+        font-weight: bold;
     }
 `;
 
@@ -18,7 +19,7 @@ const StyledBadge = styled.div`
     border-radius: 100%;
     margin-right: 10px;
     position: relative;
-    background-color: orange;
+    background-color: black;
     & > img {
         object-fit: cover;
         width: 100%;
@@ -29,7 +30,7 @@ const StyledBadge = styled.div`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 30px;
+        font-size: 20px;
         color: white;
     }
 `;

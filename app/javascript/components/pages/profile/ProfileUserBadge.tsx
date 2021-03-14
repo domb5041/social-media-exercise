@@ -24,7 +24,7 @@ const StyledBadge = styled.div`
     border-radius: 100%;
     position: relative;
     display: inline-block;
-    background-color: orange;
+    background-color: silver;
     & > img {
         object-fit: cover;
         width: 100%;

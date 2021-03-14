@@ -33,6 +33,7 @@ const StyledModal = styled.div`
         display: flex;
         flex-direction: column;
         transition: 0.2s;
+        text-align: left;
     }
     &.modal-enter {
         opacity: 0;
@@ -64,6 +65,10 @@ const StyledModal = styled.div`
 
 const StyledHeader = styled.div`
     padding: 5px;
+    border-bottom: 1px solid silver;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     & > h4 {
         flex: 1;
         margin: 0;
@@ -75,30 +80,29 @@ const StyledHeader = styled.div`
 const StyledClose = styled.button`
     border: none;
     background: none;
-    font-size: 18px;
+    font-size: 20px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 40px;
     height: 40px;
     padding: 0;
-    transition: 0.1s;
-    position: absolute;
-    top: 0;
-    right: 0;
+    transition: 0.2s;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.4);
     outline: none;
-    border-bottom-left-radius: 10px;
+    &:hover {
+        transform: scale(1.1);
+    }
 `;
 
 const StyledBody = styled.div`
     flex: 1;
     overflow: auto;
+    padding: 10px;
 `;
 
 const StyledFooter = styled.div`
-    border-top: 1px solid black;
+    border-top: 1px solid silver;
     padding: 10px;
 `;
 
@@ -121,15 +125,14 @@ export default function Modal({
             <StyledModal size={size}>
                 <div className='modal-panel'>
                     <LoadingOverlay showWhen={loading} />
-                    {title && (
-                        <StyledHeader>
-                            <h4>{title}</h4>
-                        </StyledHeader>
-                    )}
+                    <StyledHeader>
+                        <h4>{title}</h4>
+                        <StyledClose onClick={close}>
+                            <i className='fas fa-times' />
+                        </StyledClose>
+                    </StyledHeader>
                     <StyledBody>{children}</StyledBody>
-                    <StyledClose onClick={close}>
-                        <i className='fas fa-times' />
-                    </StyledClose>
+
                     {footerElements && (
                         <StyledFooter>{footerElements}</StyledFooter>
                     )}
@@ -142,4 +145,5 @@ export default function Modal({
 Modal.defaultProps = {
     size: 'small',
     loading: false,
+    title: '',
 };

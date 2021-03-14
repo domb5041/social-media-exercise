@@ -9,6 +9,19 @@ import ConfirmFooter from '../common/modal/ConfirmFooter';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
 
+const StyledPostImg = styled.div`
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: silver;
+    & > img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+`;
+
 const StyledAuthorRow = styled.div`
     padding: 10px;
     display: flex;
@@ -18,8 +31,8 @@ const StyledAuthorRow = styled.div`
 const StyledPostRow = styled.div`
     padding: 10px 40px;
     margin-left: 20px;
+    margin-bottom: 30px;
     font-size: 18px;
-    border-bottom: 1px solid silver;
 `;
 
 const StyledCommentInput = styled.div`
@@ -117,10 +130,16 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                 close={close}
                 loading={loading}
                 footerElements={footerElements()}
+                title='Post'
             >
                 {!loading && (
                     <>
-                        <img src={post.image_url} style={{ width: '100%' }} />
+                        <StyledPostImg>
+                            <img
+                                src={post.image_url}
+                                style={{ width: '100%' }}
+                            />
+                        </StyledPostImg>
                         <StyledAuthorRow>
                             <User
                                 image={user.image_url}
@@ -128,14 +147,14 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                             />
                             <div>
                                 <Button
-                                    text='Edit Post'
+                                    text='Edit'
                                     onClick={startEditing}
                                     style={{ marginRight: 10 }}
                                     showWhen={currentUser == post.user_id}
                                     secondary
                                 />
                                 <Button
-                                    text='Delete Post'
+                                    text='Delete'
                                     onClick={() => setConfirmDelete(true)}
                                     showWhen={currentUser == post.user_id}
                                     secondary

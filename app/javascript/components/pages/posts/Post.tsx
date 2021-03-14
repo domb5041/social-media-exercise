@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import * as api from '../../../apiRequests';
 import User from './PostUserBadge';
 
-const StyledPostContainer = styled.div`
-    margin-bottom: 40px;
-`;
-
 const StyledPost = styled.div`
     width: ${props => (props.compact ? 200 : 500)}px;
     height: ${props => (props.compact ? 200 : 500)}px;
@@ -16,6 +12,7 @@ const StyledPost = styled.div`
     overflow: hidden;
     cursor: pointer;
     flex-shrink: 0;
+    background-color: silver;
     & > img {
         object-fit: cover;
         width: 100%;
@@ -38,6 +35,15 @@ const StyledBody = styled.div`
     padding: 20px;
 `;
 
+const StyledAuthor = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 10px 20px;
+`;
+
 export default function Post({ image, body, setPostFocus, userId, compact }) {
     const [user, setUser] = useState('');
 
@@ -50,20 +56,20 @@ export default function Post({ image, body, setPostFocus, userId, compact }) {
             setUser(d.user);
         });
     };
-    return compact ? (
+    return (
         <StyledPost onClick={setPostFocus} compact={compact}>
             <img src={image} />
+            {!compact && (
+                <>
+                    <StyledAuthor>
+                        <User
+                            image={user.image_url}
+                            name={user.firstname + ' ' + user.lastname}
+                        />
+                    </StyledAuthor>
+                    <StyledBody>{body}</StyledBody>
+                </>
+            )}
         </StyledPost>
-    ) : (
-        <StyledPostContainer>
-            <User
-                image={user.image_url}
-                name={user.firstname + ' ' + user.lastname}
-            />
-            <StyledPost onClick={setPostFocus} compact={compact}>
-                <img src={image} />
-                <StyledBody>{body}</StyledBody>
-            </StyledPost>
-        </StyledPostContainer>
     );
 }

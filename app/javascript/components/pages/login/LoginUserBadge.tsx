@@ -9,7 +9,7 @@ const StyledUser = styled.div`
     margin: 20px;
     width: 200px;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid silver;
     border-radius: 10px;
     padding: 20px 10px 10px 10px;
     position: relative;
@@ -28,7 +28,7 @@ const StyledBadge = styled.div`
     border-radius: 100%;
     position: relative;
     display: inline-block;
-    background-color: orange;
+    background-color: silver;
     & > img {
         object-fit: cover;
         width: 100%;
