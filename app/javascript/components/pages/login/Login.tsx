@@ -13,6 +13,13 @@ const StyledUsers = styled.div`
     align-items: center;
 `;
 
+const StyledUserGrid = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    justify-content: center;
+`;
+
 export default function Login({ currentUser, setCurrentUser }) {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -34,17 +41,19 @@ export default function Login({ currentUser, setCurrentUser }) {
         <StyledUsers>
             <LoadingOverlay showWhen={loading} />
             <CreateUser getUsers={getUsers} />
-            {users.map((user, i) => (
-                <LoginUserBadge
-                    key={i}
-                    image={user.image_url}
-                    name={user.firstname + ' ' + user.lastname}
-                    login={() => setCurrentUser(user.id)}
-                    deleteUser={() => api.deleteUser(user.id)}
-                    isLoggedIn={currentUser == user.id}
-                    userId={user.id}
-                />
-            ))}
+            <StyledUserGrid>
+                {users.map((user, i) => (
+                    <LoginUserBadge
+                        key={i}
+                        image={user.image_url}
+                        name={user.firstname + ' ' + user.lastname}
+                        login={() => setCurrentUser(user.id)}
+                        isLoggedIn={currentUser == user.id}
+                        userId={user.id}
+                        getUsers={getUsers}
+                    />
+                ))}
+            </StyledUserGrid>
         </StyledUsers>
     );
 }
