@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
+import { CSSTransition } from 'react-transition-group';
 
 const modalSizes = {
     small: { width: '500px', height: '300px' },
@@ -19,7 +19,7 @@ const StyledModal = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     padding: 10px;
-    & > div {
+    & .modal-panel {
         width: ${props => modalSizes[props.size].width};
         height: ${props => modalSizes[props.size].height};
         max-width: 100vw;
@@ -31,6 +31,33 @@ const StyledModal = styled.div`
         position: relative;
         display: flex;
         flex-direction: column;
+        transition: 0.2s;
+    }
+    &.modal-enter {
+        opacity: 0;
+        & .modal-panel {
+            transform: scale(0.8);
+        }
+    }
+    &.modal-enter-active {
+        opacity: 1;
+        transition: 0.2s;
+        & .modal-panel {
+            transform: scale(1);
+        }
+    }
+    &.modal-exit {
+        opacity: 1;
+        & .modal-panel {
+            transform: scale(1);
+        }
+    }
+    &.modal-exit-active {
+        opacity: 0;
+        transition: 0.2s;
+        & .modal-panel {
+            transform: scale(0.8);
+        }
     }
 `;
 
@@ -70,9 +97,14 @@ const StyledBody = styled.div`
 
 export default function Modal({ title, children, showWhen, close, size }) {
     return (
-        showWhen && (
+        <CSSTransition
+            in={showWhen}
+            unmountOnExit
+            timeout={200}
+            classNames='modal'
+        >
             <StyledModal size={size}>
-                <div>
+                <div className='modal-panel'>
                     <StyledHeader>
                         <h4>{title}</h4>
                         <StyledClose onClick={close}>
@@ -82,7 +114,7 @@ export default function Modal({ title, children, showWhen, close, size }) {
                     <StyledBody>{children}</StyledBody>
                 </div>
             </StyledModal>
-        )
+        </CSSTransition>
     );
 }
 
