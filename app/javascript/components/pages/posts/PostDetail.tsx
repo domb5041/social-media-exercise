@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import styled from 'styled-components';
-import Modal from '../Modal';
-import LoadingOverlay from '../LoadingOverlay';
+import Modal from '../common/Modal';
+import LoadingOverlay from '../common/LoadingOverlay';
 import Comment from './Comment';
 
 export default function PostDetail({ postId, close, getPosts, currentUser }) {

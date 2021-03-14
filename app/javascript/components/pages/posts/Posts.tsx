@@ -3,11 +3,11 @@ import ApplicationLayout from '../../layouts/ApplicationLayout';
 import * as api from '../../../apiRequests';
 import Post from './Post';
 import PostDetail from './PostDetail';
-import LoadingOverlay from '../LoadingOverlay';
+import LoadingOverlay from '../common/LoadingOverlay';
 import CreatePost from './CreatePost';
 import CreateUser from '../login/CreateUser';
 import styled from 'styled-components';
-import Navbar from '../Navbar';
+import Navbar from '../common/Navbar';
 
 const StyledPosts = styled.div`
     flex: 1;

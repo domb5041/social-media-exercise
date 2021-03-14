@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ApplicationLayout from '../layouts/ApplicationLayout';
 import * as api from '../../apiRequests';
 import styled from 'styled-components';
-import Navbar from './Navbar';
+import Navbar from './common/Navbar';
 import Posts from './posts/Posts';
 import { Route } from 'react-router-dom';
 import Login from './login/Login';
