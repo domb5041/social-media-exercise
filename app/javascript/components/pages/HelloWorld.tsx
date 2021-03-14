@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Posts from './posts/Posts';
 import { Route } from 'react-router-dom';
 import Login from './login/Login';
+import Profile from './profile/Profile';
 
 const StyledApp = styled.div`
     display: flex;
@@ -15,7 +16,7 @@ const StyledApp = styled.div`
     width: 100vw;
 `;
 
-const HelloWorld = () => {
+export default function HelloWorld() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -53,16 +54,9 @@ const HelloWorld = () => {
                     />
                 </Route>
                 <Route path='/profile'>
-                    <div>
-                        profile
-                        <button onClick={() => api.deleteUser(11)}>
-                            delete user
-                        </button>
-                    </div>
+                    <Profile />
                 </Route>
             </StyledApp>
         </ApplicationLayout>
     );
-};
-
-export default HelloWorld;
+}
