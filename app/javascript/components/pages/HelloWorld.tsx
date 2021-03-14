@@ -31,7 +31,6 @@ export default function HelloWorld() {
         api.getPosts(100).then(d => {
             setPosts(d.posts);
             setLoading(false);
-            console.log(d);
         });
     };
 
@@ -54,7 +53,7 @@ export default function HelloWorld() {
                     />
                 </Route>
                 <Route path='/profile'>
-                    <Profile />
+                    <Profile currentUser={currentUser} />
                 </Route>
             </StyledApp>
         </ApplicationLayout>

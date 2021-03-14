@@ -94,6 +94,19 @@ export const uploadPostImage = id => {
         .catch(err => console.log(err));
 };
 
+export const uploadUserImage = id => {
+    var formData = new FormData();
+    var imagefile = document.querySelector('#user-image-file');
+    formData.append('image', imagefile.files[0]);
+    const config = {
+        headers: { 'content-type': 'multipart/form-data' },
+    };
+    return axios
+        .post(`/api/users/${id}/image`, formData, config)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
 // comments
 
 export const createComment = (postId, userId, comment) => {
