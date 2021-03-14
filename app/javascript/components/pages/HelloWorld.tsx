@@ -22,7 +22,7 @@ export default function HelloWorld() {
     return (
         <ApplicationLayout>
             <StyledApp>
-                <Navbar />
+                <Navbar currentUser={currentUser} />
                 <Route path='/login'>
                     <Login
                         currentUser={currentUser}
