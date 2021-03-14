@@ -12,7 +12,11 @@ const StyledButton = styled.button`
     cursor: pointer;
     outline: none;
     transition: 0.2s;
-    &:hover {
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    &:not(:disabled):hover {
         transform: scale(1.07);
     }
 `;

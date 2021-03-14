@@ -3,6 +3,7 @@ import * as api from '../../../apiRequests';
 import Modal from '../common/modal/Modal';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import FloatingButton from '../common/FloatingButton';
+import TextInput from '../common/TextInput';
 
 export default function CreateUser({ getUsers }) {
     const [creatingUser, setCreatingUser] = useState(false);
@@ -41,16 +42,17 @@ export default function CreateUser({ getUsers }) {
                     />
                 }
             >
-                <input
-                    style={{ display: 'block' }}
-                    type='text'
-                    onChange={e => setNewFirstname(e.target.value)}
-                />
-                <input
-                    style={{ display: 'block' }}
-                    type='text'
-                    onChange={e => setNewLastname(e.target.value)}
-                />
+                <div style={{ padding: 10, textAlign: 'center' }}>
+                    <TextInput
+                        style={{ marginRight: 10 }}
+                        onChange={e => setNewFirstname(e.target.value)}
+                        placeholder='First Name'
+                    />
+                    <TextInput
+                        onChange={e => setNewLastname(e.target.value)}
+                        placeholder='Last Name'
+                    />
+                </div>
             </Modal>
         </>
     );

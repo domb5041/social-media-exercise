@@ -7,6 +7,7 @@ import Comment from './Comment';
 import User from './PostUserBadge';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import Button from '../common/Button';
+import TextInput from '../common/TextInput';
 
 const StyledAuthorRow = styled.div`
     padding: 10px;
@@ -95,9 +96,8 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
 
     const footerElements = () => (
         <StyledCommentInput>
-            <input
+            <TextInput
                 style={{ display: 'block' }}
-                type='text'
                 value={commentBody}
                 onChange={e => setCommentBody(e.target.value)}
             />
@@ -160,6 +160,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                             showWhen={editing}
                             close={cancelEditing}
                             title='Edit Post'
+                            size='small'
                             footerElements={
                                 <ConfirmFooter
                                     cancelAction={cancelEditing}

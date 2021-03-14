@@ -4,6 +4,7 @@ import Modal from '../common/modal/Modal';
 import * as api from '../../../apiRequests';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import Button from '../common/Button';
+import TextInput from '../common/TextInput';
 
 const StyledUser = styled.div`
     text-align: center;
@@ -142,23 +143,25 @@ export default function User({ currentUser }) {
                         confirmAction={finishEditingName}
                         confirmText='Save'
                         confirmDisabled={
-                            firstnameText === user.firstname &&
-                            lastnameText === user.lastname
+                            (firstnameText === user.firstname &&
+                                lastnameText === user.lastname) ||
+                            firstnameText.length === 0 ||
+                            lastnameText.length === 0
                         }
                         cancelAction={() => setEditingName(false)}
                     />
                 }
             >
-                <input
-                    type='text'
-                    value={firstnameText}
-                    onChange={e => setFirstnameText(e.target.value)}
-                />
-                <input
-                    type='text'
-                    value={lastnameText}
-                    onChange={e => setLastnameText(e.target.value)}
-                />
+                <div style={{ padding: 10, textAlign: 'center' }}>
+                    <TextInput
+                        value={firstnameText}
+                        onChange={e => setFirstnameText(e.target.value)}
+                    />
+                    <TextInput
+                        value={lastnameText}
+                        onChange={e => setLastnameText(e.target.value)}
+                    />
+                </div>
             </Modal>
         </>
     );
