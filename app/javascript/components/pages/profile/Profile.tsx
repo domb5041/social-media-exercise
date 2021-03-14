@@ -6,6 +6,7 @@ import Post from '../posts/Post';
 import styled from 'styled-components';
 import PostDetail from '../posts/PostDetail';
 import LoadingOverlay from '../common/LoadingOverlay';
+import CreatePost from '../posts/CreatePost';
 
 const StyledProfile = styled.div`
     flex: 1;
@@ -47,6 +48,7 @@ export default function Profile({ currentUser }) {
             <StyledProfile>
                 <LoadingOverlay showWhen={loading} />
                 <ProfileUserBadge currentUser={currentUser} />
+                <CreatePost getPosts={getPosts} currentUser={currentUser} />
                 {!loading && (
                     <StyledPostGrid>
                         {posts

@@ -2,25 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import Modal from '../common/Modal';
 import styled from 'styled-components';
-
-const StyledNewPost = styled.button`
-    background-color: none;
-    border: none;
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    font-size: 30px;
-    margin: 20px 0;
-    cursor: pointer;
-    border-radius: 100%;
-    background-color: black;
-    color: white;
-    transition: 0.2s;
-    outline: none;
-    &:hover {
-        transform: scale(1.1);
-    }
-`;
+import FloatingButton from '../common/FloatingButton';
 
 export default function CreatePost({ getPosts, currentUser }) {
     const [bodyText, setBodyText] = useState('');
@@ -46,9 +28,7 @@ export default function CreatePost({ getPosts, currentUser }) {
 
     return (
         <>
-            <StyledNewPost onClick={startCompose}>
-                <i className='fas fa-plus' />
-            </StyledNewPost>
+            <FloatingButton onClick={startCompose} />
             <Modal showWhen={postId} close={cancelPost}>
                 <input
                     style={{ display: 'block' }}

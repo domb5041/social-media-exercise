@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import Modal from '../common/Modal';
+import FloatingButton from '../common/FloatingButton';
 
 export default function CreateUser({ getUsers }) {
     const [creatingUser, setCreatingUser] = useState(false);
@@ -19,7 +20,10 @@ export default function CreateUser({ getUsers }) {
 
     return (
         <>
-            <button onClick={() => setCreatingUser(true)}>create user</button>
+            <FloatingButton
+                onClick={() => setCreatingUser(true)}
+                icon='fas fa-user-plus'
+            />
             <Modal
                 title='Create User'
                 showWhen={creatingUser}
