@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import * as api from '../../apiRequests';
+import * as api from '../../../apiRequests';
 
 const StyledPost = styled.div`
     width: 500px;

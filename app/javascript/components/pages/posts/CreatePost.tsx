@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import * as api from '../../apiRequests';
-import Modal from './Modal';
+import * as api from '../../../apiRequests';
+import Modal from '../Modal';
 import styled from 'styled-components';
 
 const StyledNewPost = styled.button`

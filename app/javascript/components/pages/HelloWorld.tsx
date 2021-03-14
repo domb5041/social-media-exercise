@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ApplicationLayout from '../layouts/ApplicationLayout';
 import * as api from '../../apiRequests';
-import Post from './Post';
-import PostDetail from './PostDetail';
+import Post from './posts/Post';
+import PostDetail from './posts/PostDetail';
 import LoadingOverlay from './LoadingOverlay';
-import CreatePost from './CreatePost';
+import CreatePost from './posts/CreatePost';
 import CreateUser from './CreateUser';
 import styled from 'styled-components';
 import Navbar from './Navbar';
-import Posts from './Posts';
+import Posts from './posts/Posts';
 
 const StyledApp = styled.div`
     display: flex;
