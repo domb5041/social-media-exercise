@@ -4,6 +4,18 @@ import styled from 'styled-components';
 import Modal from '../common/Modal';
 import LoadingOverlay from '../common/LoadingOverlay';
 
+const StyledComment = styled.div`
+    margin-left: 20px;
+    padding: 10px;
+    border-bottom: 1px solid silver;
+    & .comment-header {
+        margin-bottom: 10px;
+    }
+    & .comment-body {
+        margin-bottom: 10px;
+    }
+`;
+
 export default function PostDetail({
     userId,
     body,
@@ -54,12 +66,15 @@ export default function PostDetail({
 
     return (
         <>
-            <div>
-                {body} by {userName}
-                {currentUser == userId && (
-                    <button onClick={startEditing}>edit</button>
-                )}
-            </div>
+            <StyledComment>
+                <div className='comment-header'>{userName}</div>
+                <div className='comment-body'>{body}</div>
+                <div className='comment-footer'>
+                    {currentUser == userId && (
+                        <button onClick={startEditing}>edit</button>
+                    )}
+                </div>
+            </StyledComment>
             <Modal
                 showWhen={editing}
                 close={cancelEditing}
