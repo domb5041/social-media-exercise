@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Modal from '../common/modal/Modal';
 import ConfirmModal from '../common/modal/ConfirmModal';
 import Comment from './Comment';
-import User from '../common/userBadges/PostUserBadge';
+import User from './PostUserBadge';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 
 const StyledAuthorRow = styled.div`

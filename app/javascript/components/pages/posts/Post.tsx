@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as api from '../../../apiRequests';
-import User from '../common/userBadges/PostUserBadge';
+import User from './PostUserBadge';
 
 const StyledPostContainer = styled.div`
     margin-bottom: 40px;

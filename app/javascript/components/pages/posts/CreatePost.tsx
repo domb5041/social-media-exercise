@@ -3,6 +3,7 @@ import * as api from '../../../apiRequests';
 import Modal from '../common/modal/Modal';
 import styled from 'styled-components';
 import FloatingButton from '../common/FloatingButton';
+import ConfirmFooter from '../common/modal/ConfirmFooter';
 
 export default function CreatePost({ getPosts, currentUser }) {
     const [bodyText, setBodyText] = useState('');
@@ -13,7 +14,6 @@ export default function CreatePost({ getPosts, currentUser }) {
     };
 
     const finishCompose = e => {
-        e.preventDefault();
         api.publishPost(postId, bodyText).then(() => {
             setPostId(null);
             setBodyText('');
@@ -29,7 +29,19 @@ export default function CreatePost({ getPosts, currentUser }) {
     return (
         <>
             <FloatingButton onClick={startCompose} />
-            <Modal showWhen={postId} close={cancelPost}>
+            <Modal
+                showWhen={postId}
+                close={cancelPost}
+                title='New Post'
+                footerElements={
+                    <ConfirmFooter
+                        confirmAction={finishCompose}
+                        confirmText='Post'
+                        confirmDisabled={bodyText.length === 0}
+                        cancelAction={cancelPost}
+                    />
+                }
+            >
                 <input
                     style={{ display: 'block' }}
                     type='text'
@@ -42,12 +54,6 @@ export default function CreatePost({ getPosts, currentUser }) {
                     name='file'
                     onChange={() => api.uploadPostImage(postId)}
                 />
-                <button
-                    style={{ display: 'block' }}
-                    onClick={e => finishCompose(e)}
-                >
-                    publish post
-                </button>
             </Modal>
         </>
     );

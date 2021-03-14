@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import * as api from '../../../../apiRequests';
-import ConfirmModal from '../modal/ConfirmModal';
+import * as api from '../../../apiRequests';
+import ConfirmModal from '../common/modal/ConfirmModal';
 
 const StyledUser = styled.div`
     text-align: center;

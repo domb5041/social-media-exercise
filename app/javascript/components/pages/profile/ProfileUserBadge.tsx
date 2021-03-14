@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Modal from '../modal/Modal';
-import * as api from '../../../../apiRequests';
+import Modal from '../common/modal/Modal';
+import * as api from '../../../apiRequests';
+import ConfirmFooter from '../common/modal/ConfirmFooter';
 
 const StyledUser = styled.div`
     text-align: center;
@@ -106,46 +107,57 @@ export default function User({ currentUser }) {
                         <i className='fas fa-camera'></i>
                     </button>
                 </StyledBadge>
-                {editingName ? (
-                    <div>
-                        <input
-                            type='text'
-                            value={firstnameText}
-                            onChange={e => setFirstnameText(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            value={lastnameText}
-                            onChange={e => setLastnameText(e.target.value)}
-                        />
-                        <button onClick={() => setEditingName(false)}>
-                            cancel
-                        </button>
-                        <button
-                            onClick={finishEditingName}
-                            disabled={
-                                firstnameText === user.firstname &&
-                                lastnameText === user.lastname
-                            }
-                        >
-                            submit edit
-                        </button>
-                    </div>
-                ) : (
-                    <div className='user-name'>
-                        {user.firstname + ' ' + user.lastname}
-                        <button onClick={startEditingName}>edit user</button>
-                    </div>
-                )}
+                <div className='user-name'>
+                    {user.firstname + ' ' + user.lastname}
+                    <button onClick={startEditingName}>edit user</button>
+                </div>
             </StyledUser>
-            <Modal showWhen={editingImg} close={() => setEditingImg(false)}>
+            <Modal
+                showWhen={editingImg}
+                close={() => setEditingImg(false)}
+                title='Update Profile Picture'
+                footerElements={
+                    <ConfirmFooter
+                        confirmAction={finishEditingImg}
+                        confirmText='Save'
+                        confirmDisabled={false}
+                        cancelAction={() => setEditingImg(false)}
+                    />
+                }
+            >
                 <input
                     style={{ display: 'block' }}
                     type='file'
                     id='user-image-file'
                     name='file'
                 />
-                <button onClick={finishEditingImg}>Confirm</button>
+            </Modal>
+            <Modal
+                showWhen={editingName}
+                close={() => setEditingName(false)}
+                title='Change Name'
+                footerElements={
+                    <ConfirmFooter
+                        confirmAction={finishEditingName}
+                        confirmText='Save'
+                        confirmDisabled={
+                            firstnameText === user.firstname &&
+                            lastnameText === user.lastname
+                        }
+                        cancelAction={() => setEditingName(false)}
+                    />
+                }
+            >
+                <input
+                    type='text'
+                    value={firstnameText}
+                    onChange={e => setFirstnameText(e.target.value)}
+                />
+                <input
+                    type='text'
+                    value={lastnameText}
+                    onChange={e => setLastnameText(e.target.value)}
+                />
             </Modal>
         </>
     );

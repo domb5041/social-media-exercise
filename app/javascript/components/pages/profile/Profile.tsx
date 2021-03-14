@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../../apiRequests';
 import Modal from '../common/modal/Modal';
-import ProfileUserBadge from '../common/userBadges/ProfileUserBadge';
+import ProfileUserBadge from './ProfileUserBadge';
 import Post from '../posts/Post';
 import styled from 'styled-components';
 import PostDetail from '../posts/PostDetail';
