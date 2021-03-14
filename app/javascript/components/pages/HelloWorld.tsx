@@ -71,11 +71,15 @@ const HelloWorld = () => {
                             </option>
                         ))}
                     </select>
-                    <CreatePost getPosts={getPosts} currentUser={currentUser} />
                 </div>
                 <LoadingOverlay showWhen={loading} />
+
                 {!loading && (
                     <StyledPosts>
+                        <CreatePost
+                            getPosts={getPosts}
+                            currentUser={currentUser}
+                        />
                         {posts
                             .filter(post => post.state === 'published')
                             .sort(
