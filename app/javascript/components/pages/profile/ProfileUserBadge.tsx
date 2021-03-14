@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Modal from '../common/modal/Modal';
 import * as api from '../../../apiRequests';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
+import Button from '../common/Button';
 
 const StyledUser = styled.div`
     text-align: center;
@@ -108,8 +109,8 @@ export default function User({ currentUser }) {
                     </button>
                 </StyledBadge>
                 <div className='user-name'>
-                    {user.firstname + ' ' + user.lastname}
-                    <button onClick={startEditingName}>edit user</button>
+                    <div>{user.firstname + ' ' + user.lastname}</div>
+                    <Button text='Change Name' onClick={startEditingName} />
                 </div>
             </StyledUser>
             <Modal

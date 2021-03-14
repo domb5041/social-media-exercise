@@ -6,6 +6,7 @@ import ConfirmModal from '../common/modal/ConfirmModal';
 import Comment from './Comment';
 import User from './PostUserBadge';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
+import Button from '../common/Button';
 
 const StyledAuthorRow = styled.div`
     padding: 10px;
@@ -100,9 +101,11 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                 value={commentBody}
                 onChange={e => setCommentBody(e.target.value)}
             />
-            <button disabled={!commentBody} onClick={createComment}>
-                add comment
-            </button>
+            <Button
+                text='Post Comment'
+                disabled={!commentBody}
+                onClick={createComment}
+            />
         </StyledCommentInput>
     );
 
@@ -123,18 +126,21 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
                                 image={user.image_url}
                                 name={user.firstname + ' ' + user.lastname}
                             />
-                            {currentUser == post.user_id && (
-                                <div>
-                                    <button onClick={startEditing}>
-                                        Edit Post
-                                    </button>
-                                    <button
-                                        onClick={() => setConfirmDelete(true)}
-                                    >
-                                        Delete Post
-                                    </button>
-                                </div>
-                            )}
+                            <div>
+                                <Button
+                                    text='Edit Post'
+                                    onClick={startEditing}
+                                    style={{ marginRight: 10 }}
+                                    showWhen={currentUser == post.user_id}
+                                    secondary
+                                />
+                                <Button
+                                    text='Delete Post'
+                                    onClick={() => setConfirmDelete(true)}
+                                    showWhen={currentUser == post.user_id}
+                                    secondary
+                                />
+                            </div>
                         </StyledAuthorRow>
                         <StyledPostRow>{post.body}</StyledPostRow>
                         <div>

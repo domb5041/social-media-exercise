@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as api from '../../../apiRequests';
 import ConfirmModal from '../common/modal/ConfirmModal';
+import Button from '../common/Button';
 
 const StyledUser = styled.div`
     text-align: center;
@@ -84,9 +85,11 @@ export default function LoginUserBadge({
                 </StyledBadge>
                 <div>
                     <div className='user-name'>{name}</div>
-                    <button disabled={isLoggedIn} onClick={login}>
-                        login
-                    </button>
+                    <Button
+                        disabled={isLoggedIn}
+                        onClick={login}
+                        text='Login'
+                    />
                     <StyledDeleteButton
                         disabled={isLoggedIn || userId == 10}
                         onClick={() => setDeleteUserModal(true)}

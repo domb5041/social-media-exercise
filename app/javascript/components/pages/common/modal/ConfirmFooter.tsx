@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../Button';
 
 const StyledConfirmFooter = styled.div`
     display: flex;
@@ -14,10 +15,12 @@ export default function ConfirmFooter({
 }) {
     return (
         <StyledConfirmFooter>
-            <button onClick={cancelAction}>Cancel</button>
-            <button disabled={confirmDisabled} onClick={confirmAction}>
-                {confirmText}
-            </button>
+            <Button secondary text='Cancel' onClick={cancelAction} />
+            <Button
+                text={confirmText}
+                disabled={confirmDisabled}
+                onClick={confirmAction}
+            />
         </StyledConfirmFooter>
     );
 }

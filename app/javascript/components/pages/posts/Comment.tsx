@@ -5,6 +5,7 @@ import Modal from '../common/modal/Modal';
 import ConfirmModal from '../common/modal/ConfirmModal';
 import ConfirmFooter from '../common/modal/ConfirmFooter';
 import LoadingOverlay from '../common/LoadingOverlay';
+import Button from '../common/Button';
 
 const StyledComment = styled.div`
     margin-left: 20px;
@@ -73,14 +74,21 @@ export default function PostDetail({
                 <div className='comment-header'>{userName}</div>
                 <div className='comment-body'>{body}</div>
                 <div className='comment-footer'>
-                    {currentUser == userId && (
-                        <>
-                            <button onClick={startEditing}>edit comment</button>
-                            <button onClick={() => setConfirmDelete(true)}>
-                                delete comment
-                            </button>
-                        </>
-                    )}
+                    <>
+                        <Button
+                            text='Edit Comment'
+                            onClick={startEditing}
+                            showWhen={currentUser == userId}
+                            style={{ marginRight: 10 }}
+                            secondary
+                        />
+                        <Button
+                            text='Delete Comment'
+                            onClick={() => setConfirmDelete(true)}
+                            showWhen={currentUser == userId}
+                            secondary
+                        />
+                    </>
                 </div>
                 <Modal
                     showWhen={editing}
