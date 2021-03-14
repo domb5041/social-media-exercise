@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import Modal from '../common/Modal';
 import LoadingOverlay from '../common/LoadingOverlay';
 import Comment from './Comment';
+import User from '../common/userBadges/PostUserBadge';
 
 export default function PostDetail({ postId, close, getPosts, currentUser }) {
     const [editing, setEditing] = useState(false);
     const [bodyText, setBodyText] = useState('');
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [userName, setUserName] = useState('');
+    const [user, setUser] = useState('');
     const [comments, setComments] = useState([]);
     const [commentBody, setCommentBody] = useState('');
 
@@ -18,9 +19,9 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
         getPost();
     }, []);
 
-    const getUserName = userId => {
+    const getUser = userId => {
         api.getUser(userId).then(d => {
-            setUserName(d.user.firstname + ' ' + d.user.lastname);
+            setUser(d.user);
         });
     };
 
@@ -28,7 +29,7 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
         api.getPost(postId).then(d => {
             setPost(d.post);
             setLoading(false);
-            getUserName(d.post.user_id);
+            getUser(d.post.user_id);
             getComments(d.post.id);
         });
     };
@@ -71,9 +72,13 @@ export default function PostDetail({ postId, close, getPosts, currentUser }) {
     return (
         <>
             <LoadingOverlay showWhen={loading} />
-            <Modal size='large' title={userName} showWhen={post} close={close}>
+            <Modal size='large' showWhen={post} close={close}>
                 {!loading && (
                     <>
+                        <User
+                            image={user.image_url}
+                            name={user.firstname + ' ' + user.lastname}
+                        />
                         <img src={post.image_url} style={{ width: '100%' }} />
 
                         {editing ? (

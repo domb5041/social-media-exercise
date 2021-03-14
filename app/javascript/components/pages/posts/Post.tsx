@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as api from '../../../apiRequests';
+import User from '../common/userBadges/PostUserBadge';
 
 const StyledPost = styled.div`
     width: 500px;
@@ -44,22 +45,25 @@ const StyledOverlay = styled.div`
 `;
 
 export default function Post({ image, body, setPostFocus, userId }) {
-    const [userName, setUserName] = useState('');
+    const [user, setUser] = useState('');
 
     useEffect(() => {
-        getUserName();
+        getUser();
     }, []);
 
-    const getUserName = () => {
+    const getUser = () => {
         api.getUser(userId).then(d => {
-            setUserName(d.user.firstname + ' ' + d.user.lastname);
+            setUser(d.user);
         });
     };
     return (
         <StyledPost onClick={setPostFocus}>
             <img src={image} />
             <StyledOverlay>
-                <div>{userName}</div>
+                <User
+                    image={user.image_url}
+                    name={user.firstname + ' ' + user.lastname}
+                />
                 <div>{body}</div>
             </StyledOverlay>
         </StyledPost>

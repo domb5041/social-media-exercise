@@ -28,6 +28,9 @@ export default function Login({ currentUser, setCurrentUser }) {
                     </option>
                 ))}
             </select>
+            {/* <button onClick={() => api.deleteUser(currentUser)}>
+                delete user
+            </button> */}
         </div>
     );
 }

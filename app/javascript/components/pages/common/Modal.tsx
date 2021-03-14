@@ -63,8 +63,6 @@ const StyledModal = styled.div`
 
 const StyledHeader = styled.div`
     padding: 5px;
-    display: flex;
-    align-items: center;
     & > h4 {
         flex: 1;
         margin: 0;
@@ -84,6 +82,9 @@ const StyledClose = styled.button`
     height: 30px;
     padding: 0;
     transition: 0.1s;
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
     &:hover {
         transform: scale(1.1);
@@ -105,12 +106,14 @@ export default function Modal({ title, children, showWhen, close, size }) {
         >
             <StyledModal size={size}>
                 <div className='modal-panel'>
-                    <StyledHeader>
-                        <h4>{title}</h4>
-                        <StyledClose onClick={close}>
-                            <i className='fas fa-times' />
-                        </StyledClose>
-                    </StyledHeader>
+                    <StyledClose onClick={close}>
+                        <i className='fas fa-times' />
+                    </StyledClose>
+                    {title && (
+                        <StyledHeader>
+                            <h4>{title}</h4>
+                        </StyledHeader>
+                    )}
                     <StyledBody>{children}</StyledBody>
                 </div>
             </StyledModal>
