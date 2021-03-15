@@ -11,6 +11,9 @@ const StyledUsers = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    & h1 {
+        color: ${props => props.theme.foreground};
+    }
 `;
 
 const StyledUserGrid = styled.div`
@@ -41,19 +44,23 @@ export default function Login({ currentUser, setCurrentUser }) {
         <StyledUsers>
             <LoadingOverlay showWhen={loading} />
             <CreateUser getUsers={getUsers} />
-            <StyledUserGrid>
-                {users.map((user, i) => (
-                    <LoginUserBadge
-                        key={i}
-                        image={user.image_url}
-                        name={user.firstname + ' ' + user.lastname}
-                        login={() => setCurrentUser(user.id)}
-                        isLoggedIn={currentUser == user.id}
-                        userId={user.id}
-                        getUsers={getUsers}
-                    />
-                ))}
-            </StyledUserGrid>
+            {users.length > 0 ? (
+                <StyledUserGrid>
+                    {users.map((user, i) => (
+                        <LoginUserBadge
+                            key={i}
+                            image={user.image_url}
+                            name={user.firstname + ' ' + user.lastname}
+                            login={() => setCurrentUser(user.id)}
+                            isLoggedIn={currentUser == user.id}
+                            userId={user.id}
+                            getUsers={getUsers}
+                        />
+                    ))}
+                </StyledUserGrid>
+            ) : (
+                <h1>Please create a user and login.</h1>
+            )}
         </StyledUsers>
     );
 }

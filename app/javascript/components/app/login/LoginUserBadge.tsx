@@ -92,7 +92,7 @@ export default function LoginUserBadge({
                         onClick={login}
                         text='Login'
                     />
-                    {!isLoggedIn && userId != 10 && (
+                    {!isLoggedIn && (
                         <StyledDeleteButton
                             onClick={() => setDeleteUserModal(true)}
                         >

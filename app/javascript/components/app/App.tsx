@@ -18,14 +18,23 @@ const StyledApp = styled.div`
 `;
 
 export default function HelloWorld() {
-    const masterUserId = 10;
-    const [currentUser, setCurrentUser] = useState(masterUserId);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+
+    const getUsers = () => {
+        api.getUsers().then(d => {
+            setCurrentUser(d.user ? d.users[0].id : null);
+        });
+    };
 
     return (
         <ApplicationLayout>
             <StyledApp>
-                <Navbar currentUser={currentUser} />
-                <Redirect exact from='/' to='/posts' />
+                {currentUser && <Navbar currentUser={currentUser} />}
+                <Redirect exact from='/' to='/login' />
                 <Route path='/login'>
                     <Login
                         currentUser={currentUser}
